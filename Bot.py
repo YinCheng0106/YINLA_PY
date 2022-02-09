@@ -34,4 +34,6 @@ async def 圖片(ctx):
     pic = discord.File(random_pic)
     await ctx.send(file= pic)
 
+
+
 bot.run(jdata['TOKEN'])
