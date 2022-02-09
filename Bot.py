@@ -16,17 +16,21 @@ async def on_ready():
 
 @bot.event
 async def on_member_join(member):
-    channel = bot.get_channel(940826399227400222)
+    channel = bot.get_channel(int(jdata['CHANNEL']))
     await channel.send(f'**{member}** join!')
 
 @bot.event
 async def on_member_remove(member):
-    channel = bot.get_channel(940826399227400222)
+    channel = bot.get_channel(int(jdata['CHANNEL']))
     await channel.send(f'**{member}** leave...')
 
 @bot.command()
 async def ping(ctx): 
     await ctx.send(f'{round(bot.latency*1000)} (ms)')
 
+@bot.command()
+async def 圖片(ctx):
+    pic = discord.File('C:\\Users\\user\\Documents\\GitHub\\YINLA_Bot\\yinla.jpg')
+    await ctx.send(file= pic)
 
 bot.run(jdata['TOKEN'])
