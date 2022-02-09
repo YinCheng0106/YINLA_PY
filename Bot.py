@@ -1,10 +1,9 @@
 from re import T
 import discord
+from discord.ext import commands
 intents = discord.Intents.all()
 
-from discord.ext import commands
-
-bot = commands.Bot(command_prefix='YIN',intents=intents)
+bot = commands.Bot(command_prefix='yin',intents=intents)
 
 @bot.event
 async def on_ready():
