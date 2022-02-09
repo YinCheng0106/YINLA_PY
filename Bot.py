@@ -1,6 +1,11 @@
 from re import T
 import discord
 from discord.ext import commands
+import json
+
+with open('setting.json', mode='r', encoding='utf8') as jfile:
+   jdata = json.load(jfile)
+
 intents = discord.Intents.all()
 
 bot = commands.Bot(command_prefix='yin',intents=intents)
@@ -24,4 +29,4 @@ async def ping(ctx):
     await ctx.send(f'{round(bot.latency*1000)} (ms)')
 
 
-bot.run('OTQwNzc4NzQzNjM3NjA2NDUx.YgMWew._UGW_Ub2Xve4l3ctstkRJMRUJLo')
+bot.run(jdata['TOKEN'])
