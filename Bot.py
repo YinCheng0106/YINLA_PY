@@ -2,7 +2,7 @@ from re import T
 import discord
 from discord.ext import commands
 import json
-
+import random
 with open('setting.json', mode='r', encoding='utf8') as jfile:
    jdata = json.load(jfile)
 
@@ -30,7 +30,8 @@ async def ping(ctx):
 
 @bot.command()
 async def 圖片(ctx):
-    pic = discord.File(jdata['pic'])
+    random_pic = random.choice(jdata['pic'])
+    pic = discord.File(random_pic)
     await ctx.send(file= pic)
 
 bot.run(jdata['TOKEN'])
