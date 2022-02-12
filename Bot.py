@@ -15,15 +15,20 @@ bot = commands.Bot(command_prefix='yin',intents=intents)
 async def on_ready():
     print(">>bot is online<<")
 
-@bot.event
-async def on_member_join(member):
-    channel = bot.get_channel(int(jdata['CHANNEL']))
-    await channel.send(f'**{member}** join!')
+@bot.command()
+async def load(ctx, extension):
+    bot.load_extension(f'cmds.{extension}')
+    await ctx.send(f'載入 **{extension}** 成功!')
 
-@bot.event
-async def on_member_remove(member):
-    channel = bot.get_channel(int(jdata['CHANNEL']))
-    await channel.send(f'**{member}** leave...')
+@bot.command()
+async def unload(ctx, extension):
+    bot.unload_extension(f'cmds.{extension}')
+    await ctx.send(f'**{extension}** 移除成功!')
+
+@bot.command()
+async def reload(ctx, extension):
+    bot.reload_extension(f'cmds.{extension}')
+    await ctx.send(f'重載 **{extension}** 成功!')
 
 for filename in os.listdir('./cmds'):
     if filename.endswith('.py'):
