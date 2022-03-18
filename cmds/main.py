@@ -25,12 +25,13 @@ class Main(Cog_EX):
 
     @commands.command()
     async def em(self, ctx):
-        embed=discord.Embed(title="About", description="YinCheng0106", color=0xfa0000, timestamp=datetime.datetime.utcnow())
-        embed.set_author(name="YinCheng", url="https://allmy.bio/yincheng", icon_url="https://media.giphy.com/media/sJWNLTclcvVmw/giphy.gif")
-        embed.set_thumbnail(url="https://media.giphy.com/media/sJWNLTclcvVmw/giphy.gif")
-        embed.add_field(name="1", value="123", inline=False)
-        embed.add_field(name="2", value="123", inline=True)
-        embed.set_footer(text="123456")
+        embed=discord.Embed(title="機器人資訊", color=0x16a5fe)
+        embed.set_author(name="YINLA", url="https://discord.gg/We6enK7wb3", icon_url="https://pbs.twimg.com/media/FOJUUgpVgAIwig9?format=jpg&name=4096x4096")
+        embed.add_field(name="誕生日期", value="2022/02/09", inline=True)
+        embed.add_field(name="正式啟用", value="????/??/??", inline=True)
+        embed.add_field(name="程式", value="PYTHON", inline=True)
+        embed.add_field(name="指令", value="yin", inline=True)
+        embed.set_footer(text="YinCheng#8104 製")
         await ctx.send(embed=embed)
         
 def setup(bot):
