@@ -24,7 +24,7 @@ class Main(Cog_EX):
     
 
     @commands.command()
-    async def em(self, ctx):
+    async def into(self, ctx):
         embed=discord.Embed(title="機器人資訊", color=0x16a5fe)
         embed.set_author(name="YINLA", url="https://discord.gg/We6enK7wb3", icon_url="https://pbs.twimg.com/media/FOJUUgpVgAIwig9?format=jpg&name=4096x4096")
         embed.add_field(name="誕生日期", value="2022/02/09", inline=True)
