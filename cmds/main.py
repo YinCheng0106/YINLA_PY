@@ -33,6 +33,10 @@ class Main(Cog_EX):
         embed.add_field(name="指令", value="yin", inline=True)
         embed.set_footer(text="YinCheng#8104 製")
         await ctx.send(embed=embed)
+
+    @commands.command()
+    async def testA(self, ctx, num):
+        await ctx.send(num)
         
 def setup(bot):
     bot.add_cog(Main(bot))
