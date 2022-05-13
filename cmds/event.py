@@ -39,8 +39,7 @@ class Event(Cog_EX):
             embed.set_author(name="⚠️ 發生錯誤 ⚠️")
             await ctx.send(embed=embed)
         else:
-            embed=discord.Embed(color=0xff0000)
-            embed.set_author(name="⚠️ 發生未知錯誤 ⚠️")
+            embed=discord.Embed(title="⚠️ 發生未知錯誤 ⚠️",color=0xff0000)
             await ctx.send(embed=embed)
     
     # https://youtu.be/ojSb06_jm9Y?list=PLSCgthA1Anif1w6mKM3O6xlBGGypXtrtN&t=1748

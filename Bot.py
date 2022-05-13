@@ -17,17 +17,22 @@ async def on_ready():
 @bot.command()
 async def load(ctx, extension):
     bot.load_extension(f'cmds.{extension}')
-    await ctx.send(f'載入 **{extension}** 成功!')
+    embed=discord.Embed(description=f'**{extension}** 載入成功',color=0x00ff62)
+    embed.set_author(name="🛑 系統通知 🛑")
+    await ctx.send(embed=embed)
 
 @bot.command()
 async def unload(ctx, extension):
     bot.unload_extension(f'cmds.{extension}')
-    await ctx.send(f'**{extension}** 移除成功!')
-
+    embed=discord.Embed(description=f'**{extension}** 移除成功',color=0x00ff62)
+    embed.set_author(name="🛑 系統通知 🛑")
+    await ctx.send(embed=embed)
 @bot.command()
 async def reload(ctx, extension):
     bot.reload_extension(f'cmds.{extension}')
-    await ctx.send(f'重載 **{extension}** 成功!')
+    embed=discord.Embed(description=f'重載 **{extension}** 成功!',color=0x00ff62)
+    embed.set_author(name="🛑 系統通知 🛑")
+    await ctx.send(embed=embed)
 
 for filename in os.listdir('./cmds'):
     if filename.endswith('.py'):
