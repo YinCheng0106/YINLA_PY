@@ -11,18 +11,41 @@ class Event(Cog_EX):
     @commands.Cog.listener()
     async def on_member_join(self, member):
         channel = self.bot.get_channel(int(jdata['CHANNEL']))
-        await channel.send(f'**{member}** join!')
+        embed=discord.Embed(title=f'**{member}**加入!', color=0xff8800)
+        embed.set_author(name="✨ 歡迎 ✨")
+        await channel.send(embed=embed)
 
     @commands.Cog.listener()
     async def on_member_remove(self, member):
         channel = self.bot.get_channel(int(jdata['CHANNEL']))
-        await channel.send(f'**{member}** leave...')
+        embed=discord.Embed(title=f'**{member}**離開了...', color=0xff8800)
+        embed.set_author(name="😢 喔不 😢")
+        await channel.send(embed=embed)
 
     @commands.Cog.listener()
-    async def on_message(self, msg):
+    async def on_message(self, msg1):
         keyword = ['hi','早安','早安咖啡','安安']
-        if msg.content in keyword and msg.author !=self.bot.user:
-            await msg.channel.send('拿鐵\n**呼拉!**')
+        if msg1.content in keyword and msg1.author !=self.bot.user:
+            await msg1.channel.send('拿鐵\n**呼拉!**')
+
+    @commands.Cog.listener()
+    async def on_message(self, msg2):
+        keyword = ['早上好']
+        if msg2.content in keyword and msg2.author !=self.bot.user:
+            await msg2.channel.send('中國\n我現在有冰淇淋')
+
+    @commands.Cog.listener()
+    async def on_message(self, msg3):
+        keyword = ['晚安','晚上好']
+        if msg3.content in keyword and msg3.author !=self.bot.user:
+            await msg3.channel.send('寶，晚安!')
+
+    @commands.Cog.listener()
+    async def on_message(self, msg4):
+        keyword = ['兩個禮拜以後']
+        if msg4.content in keyword and msg4.author !=self.bot.user:
+            await msg4.channel.send('速度與激情9 ~')
+
     #ERROR HANDLER
     @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
@@ -49,8 +72,9 @@ class Event(Cog_EX):
     #    if isinstance(error, commands.errors.MissingRequiredArgument):
     #        await ctx.send("錯誤訊息")
     @commands.Cog.listener()
-    async def on_reaction_add(self, reaction, user):
-        print(reaction)
+    async def on_raw_reaction_add(self, payload):
+        print(payload.emoji)
+        print(payload.member)
 
 
 def setup(bot):
