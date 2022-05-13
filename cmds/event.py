@@ -23,28 +23,20 @@ class Event(Cog_EX):
         await channel.send(embed=embed)
 
     @commands.Cog.listener()
-    async def on_message(self, msg1):
-        keyword = ['hi','早安','早安咖啡','安安']
-        if msg1.content in keyword and msg1.author !=self.bot.user:
-            await msg1.channel.send('拿鐵\n**呼拉!**')
-
-    @commands.Cog.listener()
-    async def on_message(self, msg2):
-        keyword = ['早上好']
-        if msg2.content in keyword and msg2.author !=self.bot.user:
-            await msg2.channel.send('中國\n我現在有冰淇淋')
-
-    @commands.Cog.listener()
-    async def on_message(self, msg3):
-        keyword = ['晚安','晚上好']
-        if msg3.content in keyword and msg3.author !=self.bot.user:
-            await msg3.channel.send('寶，晚安!')
-
-    @commands.Cog.listener()
-    async def on_message(self, msg4):
-        keyword = ['兩個禮拜以後']
-        if msg4.content in keyword and msg4.author !=self.bot.user:
-            await msg4.channel.send('速度與激情9 ~')
+    async def on_message(self, msg):
+        if msg.content == '安安' :
+            await msg.channel.send('嗨')
+        elif msg.content == 'test' :
+            await msg.channel.send('ok')
+        elif msg.content == '早上好' :
+            await msg.channel.send('中國\n我現在有冰淇淋')
+        elif msg.content == '晚安' :
+            await msg.channel.send('寶，晚安!')
+        elif msg.content == '兩個禮拜以後' :
+            await msg.channel.send('速度與激情9 ~')
+        elif msg.content == '早安' :
+            await msg.channel.send('拿鐵\n呼拉!')
+        
 
     #ERROR HANDLER
     @commands.Cog.listener()
