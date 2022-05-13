@@ -23,5 +23,7 @@ class Event(Cog_EX):
         if msg.content in keyword and msg.author !=self.bot.user:
             await msg.channel.send('拿鐵\n**呼拉!**')
 
+
+
 def setup(bot):
     bot.add_cog(Event(bot))
