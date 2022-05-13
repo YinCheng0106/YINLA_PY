@@ -49,6 +49,10 @@ class Event(Cog_EX):
     #async def 指令名稱_error(self, ctx, error):
     #    if isinstance(error, commands.errors.MissingRequiredArgument):
     #        await ctx.send("錯誤訊息")
+    @commands.Cog.listener()
+    async def on_reaction_add(self, reaction, user):
+        print(reaction)
+
 
 def setup(bot):
     bot.add_cog(Event(bot))
