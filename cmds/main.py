@@ -1,4 +1,3 @@
-from re import purge
 import discord
 from discord.ext import commands
 from core.classes import Cog_EX
@@ -21,7 +20,12 @@ class Main(Cog_EX):
     async def clean(self, ctx, num:int):
         await ctx.channel.purge(limit=num+1)
 
-    
+    @commands.command()
+    async def command(self, ctx):
+        embed=discord.Embed(title="指令專區", color=0xfbff00)
+        embed.add_field(name=">ping", value="檢視機器人延遲", inline=True)
+        embed.add_field(name=">into", value="檢視機器人資訊", inline=True)
+        await ctx.send(embed=embed)
 
     @commands.command()
     async def into(self, ctx):
@@ -30,7 +34,7 @@ class Main(Cog_EX):
         embed.add_field(name="誕生日期", value="2022/02/09", inline=True)
         embed.add_field(name="正式啟用", value="????/??/??", inline=True)
         embed.add_field(name="程式", value="PYTHON", inline=True)
-        embed.add_field(name="指令", value="yin", inline=True)
+        embed.add_field(name="指令", value=">", inline=True)
         embed.set_footer(text="YinCheng#8104 製")
         await ctx.send(embed=embed)
 

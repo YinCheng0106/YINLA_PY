@@ -12,14 +12,14 @@ class Event(Cog_EX):
     @commands.Cog.listener()
     async def on_member_join(self, member):
         channel = self.bot.get_channel(int(jdata['CHANNEL']))
-        embed=discord.Embed(title=f'**{member}**加入!', color=0xff8800)
+        embed=discord.Embed(title=f'**{member}** 加入!', color=0xff8800)
         embed.set_author(name="✨ 歡迎 ✨")
         await channel.send(embed=embed)
 
     @commands.Cog.listener()
     async def on_member_remove(self, member):
         channel = self.bot.get_channel(int(jdata['CHANNEL']))
-        embed=discord.Embed(title=f'**{member}**離開了...', color=0xff8800)
+        embed=discord.Embed(title=f'**{member}** 離開了...', color=0xff8800)
         embed.set_author(name="😢 喔不 😢")
         await channel.send(embed=embed)
 
@@ -37,6 +37,19 @@ class Event(Cog_EX):
             await msg.channel.send('速度與激情9 ~')
         elif msg.content == '早安' :
             await msg.channel.send('拿鐵\n呼拉!')
+        elif msg.content == '我好帥喔':
+            await msg.delete()
+            await msg.channel.send('不好意思，不要騙人啦')
+        elif msg.content == '我好帥':
+            await msg.delete()
+            await msg.channel.send('不好意思，不要騙人啦')
+        elif msg.content == '木瓜好漂亮':
+            await msg.delete()
+            await msg.channel.send('噓!，你太誠實啦😎')
+        elif msg.content == '木瓜好美':
+            await msg.delete()
+            await msg.channel.send('噓!，你太誠實啦😎')
+
 
     #ERROR HANDLER
     @commands.Cog.listener()
