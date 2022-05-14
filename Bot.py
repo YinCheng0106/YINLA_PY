@@ -1,3 +1,4 @@
+from turtle import title
 import discord
 from discord.ext import commands
 import json
@@ -19,20 +20,20 @@ async def on_ready():
 @bot.command()
 async def load(ctx, extension):
     bot.load_extension(f'cmds.{extension}')
-    embed=discord.Embed(description=f'**{extension}** 載入成功',color=0x00ff62)
+    embed=discord.Embed(title=f'✅ ‖ **{extension}** 載入成功',color=0x00ff62)
     embed.set_author(name="🛑 系統通知 🛑")
     await ctx.send(embed=embed)
 
 @bot.command()
 async def unload(ctx, extension):
     bot.unload_extension(f'cmds.{extension}')
-    embed=discord.Embed(description=f'**{extension}** 移除成功',color=0x00ff62)
+    embed=discord.Embed(title=f'✅ ‖ **{extension}** 移除成功',color=0x00ff62)
     embed.set_author(name="🛑 系統通知 🛑")
     await ctx.send(embed=embed)
 @bot.command()
 async def reload(ctx, extension):
     bot.reload_extension(f'cmds.{extension}')
-    embed=discord.Embed(description=f'重載 **{extension}** 成功!',color=0x00ff62)
+    embed=discord.Embed(title=f'✅ ‖ 重載 **{extension}** 成功!',color=0x00ff62)
     embed.set_author(name="🛑 系統通知 🛑")
     await ctx.send(embed=embed)
 

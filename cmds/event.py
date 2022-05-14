@@ -1,5 +1,3 @@
-from configparser import MissingSectionHeaderError
-from lib2to3.pgen2.token import AWAIT
 import discord
 from discord.ext import commands
 from core.classes import Cog_EX
@@ -9,18 +7,19 @@ with open('setting.json', mode='r', encoding='utf8') as jfile:
    jdata = json.load(jfile)
 
 class Event(Cog_EX):
+
     @commands.Cog.listener()
     async def on_member_join(self, member):
         channel = self.bot.get_channel(int(jdata['CHANNEL']))
-        embed=discord.Embed(title=f'**{member}** 加入!', color=0xff8800)
-        embed.set_author(name="✨ 歡迎 ✨")
+        embed=discord.Embed(title=f'✨ ‖ **{member}** 加入!', color=0xff8800)
+        embed.set_author(name="🛑 成員加入通知 🛑")
         await channel.send(embed=embed)
 
     @commands.Cog.listener()
     async def on_member_remove(self, member):
         channel = self.bot.get_channel(int(jdata['CHANNEL']))
-        embed=discord.Embed(title=f'**{member}** 離開了...', color=0xff8800)
-        embed.set_author(name="😢 喔不 😢")
+        embed=discord.Embed(title=f'😢 ‖ **{member}** 離開了...', color=0xff8800)
+        embed.set_author(name="🛑 成員離開通知 🛑")
         await channel.send(embed=embed)
 
     @commands.Cog.listener()
@@ -45,10 +44,10 @@ class Event(Cog_EX):
             await msg.channel.send('不好意思，不要騙人啦')
         elif msg.content == '木瓜好漂亮':
             await msg.delete()
-            await msg.channel.send('噓!，你太誠實啦😎')
+            await msg.channel.send('噓!，你太誠實了啦😎')
         elif msg.content == '木瓜好美':
             await msg.delete()
-            await msg.channel.send('噓!，你太誠實啦😎')
+            await msg.channel.send('噓!，你太誠實了啦😎')
 
 
     #ERROR HANDLER
@@ -59,15 +58,16 @@ class Event(Cog_EX):
             return
 
         if isinstance(error,commands.errors.MissingRequiredArgument):
-            embed=discord.Embed(title="指令不完整，請重新輸入", color=0xff0000)
+            embed=discord.Embed(title=" ❓‖ 指令不完整，請重新輸入\n輸入 `>command` 查詢現有指令", color=0xff0000)
             embed.set_author(name="⚠️ 發生錯誤 ⚠️")
             await ctx.send(embed=embed)
         elif isinstance(error, commands.errors.CommandNotFound):
-            embed=discord.Embed(title="無此指令", color=0xff0000)
+            embed=discord.Embed(title=" ❓‖ 無此指令\n輸入 `>command` 查詢現有指令", color=0xff0000)
             embed.set_author(name="⚠️ 發生錯誤 ⚠️")
             await ctx.send(embed=embed)
         else:
-            embed=discord.Embed(title="⚠️ 發生未知錯誤 ⚠️",color=0xff0000)
+            embed=discord.Embed(title=" 😕 ‖ 請通報 **管理員** 修復",color=0xff0000)
+            embed.set_author(name="⚠️ 發生未知錯誤 ⚠️")
             await ctx.send(embed=embed)
     
     # https://youtu.be/ojSb06_jm9Y?list=PLSCgthA1Anif1w6mKM3O6xlBGGypXtrtN&t=1748
@@ -85,7 +85,9 @@ class Event(Cog_EX):
                 guild = self.bot.get_guild(payload.guild_id)
                 role = guild.get_role(974906252079550505)
                 await payload.member.add_roles(role)
-                await payload.member.send(f"已取得 **{role}** 身分組")
+                embed=discord.Embed(title=f"✅ ‖ 已新增 {role} 身分組",color=0xff0000)
+                embed.set_author(name="💫 身分組領取通知 💫")
+                await payload.member.send(embed = embed)
 
     #移除反應獲得身分組
     @commands.Cog.listener()
@@ -96,7 +98,9 @@ class Event(Cog_EX):
                 user = guild.get_member(payload.user_id)
                 role = guild.get_role(974906252079550505)
                 await user.remove_roles(role)
-                await user.send(f"已移除 **{role}** 身分組")
+                embed=discord.Embed(title=f"✅ ‖ 已移除 {role} 身分組",color=0xff0000)
+                embed.set_author(name="💫 身分組移除通知 💫")
+                await user.send(embed = embed)
     
     #審核日誌 訊息刪除紀錄
 #    @commands.Cog.listener()

@@ -4,15 +4,13 @@ from core.classes import Cog_EX
 import datetime
 
 class Main(Cog_EX):
-    def __init__(self, bot):
-        self.bot = bot
 
     @commands.command()
     async def ping(self, ctx): 
         await ctx.send(f'{round(self.bot.latency*1000)} (ms)')
 
     @commands.command()
-    async def sayd(self, ctx, *,msg):
+    async def say(self, ctx, *,msg):
         await ctx.message.delete()
         await ctx.send(msg)
 
@@ -23,8 +21,12 @@ class Main(Cog_EX):
     @commands.command()
     async def command(self, ctx):
         embed=discord.Embed(title="指令專區", color=0xfbff00)
-        embed.add_field(name=">ping", value="檢視機器人延遲", inline=True)
-        embed.add_field(name=">into", value="檢視機器人資訊", inline=True)
+        embed.add_field(name=">say [內容]", value="讓機器人說話", inline=True)
+        embed.add_field(name=">clean [數量]", value="清除訊息", inline=True)
+        embed.add_field(name=">ping", value="檢視機器人延遲", inline=False)
+        embed.add_field(name=">into", value="檢視機器人資訊", inline=False)
+        embed.add_field(name=">yin", value="檢視機器人創作者資訊", inline=False)
+
         await ctx.send(embed=embed)
 
     @commands.command()
@@ -39,8 +41,17 @@ class Main(Cog_EX):
         await ctx.send(embed=embed)
 
     @commands.command()
-    async def testA(self, ctx, num):
-        await ctx.send(num)
+    async def yin(self, ctx):
+        embed=discord.Embed(title="機器人創作者資訊", url="https://allmy.bio/yincheng", description="Yin Cheng", color=0xffffff)
+        embed.set_thumbnail(url="https://i.imgur.com/TzmL9UQ.png")
+        embed.add_field(name="IG", value="\_yincheng\_", inline=False)
+        embed.add_field(name="Discord", value="YinCheng#8104", inline=True)
+        embed.add_field(name="Twitter", value="@Yin_Cheng0106", inline=False)
+        embed.add_field(name="Twitch", value="胤啦(yincheng0106)", inline=True)
+
+        await ctx.send(embed=embed)
+
+
         
 def setup(bot):
     bot.add_cog(Main(bot))
