@@ -13,6 +13,8 @@ bot = commands.Bot(command_prefix='>',intents=intents)
 @bot.event
 async def on_ready():
     print(">>bot is online<<")
+    game = discord.Activity(type = discord.ActivityType.watching, name = "如何建構 內臟", url = "https://www.twitch.tv/yincheng0106" ) #機器人狀態
+    await bot.change_presence(status = discord.Status.dnd, activity = game)
 
 @bot.command()
 async def load(ctx, extension):

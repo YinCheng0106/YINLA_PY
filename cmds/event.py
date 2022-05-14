@@ -1,4 +1,5 @@
 from configparser import MissingSectionHeaderError
+from lib2to3.pgen2.token import AWAIT
 import discord
 from discord.ext import commands
 from core.classes import Cog_EX
@@ -36,7 +37,6 @@ class Event(Cog_EX):
             await msg.channel.send('速度與激情9 ~')
         elif msg.content == '早安' :
             await msg.channel.send('拿鐵\n呼拉!')
-        
 
     #ERROR HANDLER
     @commands.Cog.listener()
@@ -63,10 +63,38 @@ class Event(Cog_EX):
     #async def 指令名稱_error(self, ctx, error):
     #    if isinstance(error, commands.errors.MissingRequiredArgument):
     #        await ctx.send("錯誤訊息")
+
+    #新增反應獲得身分組
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload):
-        print(payload.emoji)
-        print(payload.member)
+        if payload.message_id ==974926070451150899:
+            if str(payload.emoji) == '<:emoji_1:801114598408192044>':
+                guild = self.bot.get_guild(payload.guild_id)
+                role = guild.get_role(974906252079550505)
+                await payload.member.add_roles(role)
+                await payload.member.send(f"已取得 **{role}** 身分組")
+
+    #移除反應獲得身分組
+    @commands.Cog.listener()
+    async def on_raw_reaction_remove(self, payload):
+        if payload.message_id ==974926070451150899:
+            if str(payload.emoji) == '<:emoji_1:801114598408192044>':
+                guild = self.bot.get_guild(payload.guild_id)
+                user = guild.get_member(payload.user_id)
+                role = guild.get_role(974906252079550505)
+                await user.remove_roles(role)
+                await user.send(f"已移除 **{role}** 身分組")
+    
+    #審核日誌 訊息刪除紀錄
+#    @commands.Cog.listener()
+#    async def on_message_delete(self, msg):
+#        counter = 1
+#        async for audilog in msg.guild.audit_logs(action = discord.AuditLogAction.message_delete):
+#            if counter == 1:
+#                await msg.channel.send("刪除訊息者:" + audilog.user.name)
+#                counter += 1
+#        await msg.channel.send("已刪除訊息：" + str(msg.content))
+#        await msg.channel.send("訊息刪除者：" + str(msg.author))
 
 
 def setup(bot):
