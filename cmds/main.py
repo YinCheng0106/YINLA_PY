@@ -33,17 +33,17 @@ class Main(Cog_EX):
     async def into(self, ctx):
         embed=discord.Embed(title="機器人資訊", color=0x16a5fe)
         embed.set_author(name="YINLA", url="https://discord.gg/We6enK7wb3", icon_url="https://pbs.twimg.com/media/FOJUUgpVgAIwig9?format=jpg&name=4096x4096")
-        embed.add_field(name="誕生日期", value="2022/02/09", inline=True)
-        embed.add_field(name="正式啟用", value="????/??/??", inline=True)
-        embed.add_field(name="程式", value="PYTHON", inline=True)
-        embed.add_field(name="指令", value=">", inline=True)
+        embed.add_field(name="🎂 ‖ 誕生日期", value="`2022/02/09`", inline=True)
+        embed.add_field(name="🛑 ‖ 正式啟用", value="`????/??/??`", inline=True)
+        embed.add_field(name="🖥️ ‖ 程式", value="`PYTHON`", inline=True)
+        embed.add_field(name="📍 ‖ 指令", value="`>`", inline=True)
         embed.set_footer(text="YinCheng#8104 製")
         await ctx.send(embed=embed)
 
     @commands.command()
     async def yin(self, ctx):
-        embed=discord.Embed(title="機器人創作者資訊", url="https://allmy.bio/yincheng", description="Yin Cheng", color=0xffffff)
-        embed.set_thumbnail(url="https://i.imgur.com/TzmL9UQ.png")
+        embed=discord.Embed(title="機器人創作者資訊", color=0xffffff)
+        embed.set_author(name="Yin Cheng", url="https://allmy.bio/yincheng", icon_url="https://i.imgur.com/TzmL9UQ.png" )
         embed.add_field(name="IG", value="\_yincheng\_", inline=False)
         embed.add_field(name="Discord", value="YinCheng#8104", inline=True)
         embed.add_field(name="Twitter", value="@Yin_Cheng0106", inline=False)
