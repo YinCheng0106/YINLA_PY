@@ -1,3 +1,4 @@
+from certifi import contents
 import discord
 from discord.ui import Button, View
 from discord.ext import commands
@@ -9,23 +10,42 @@ class Main(Cog_EX):
     @commands.command()
     async def ping(self, ctx):
         # 按鈕 # https://youtu.be/kNUuYEWGOxA
-#        button1 = Button(label = "更新", style = discord.ButtonStyle.green, emoji = "🔁")
+        button1 = Button(label = "無法使用", style = discord.ButtonStyle.green, emoji = "🔁")
 
-        msg = f'延遲 `{round(self.bot.latency*1000)}` ms'
-        embed=discord.Embed(title = msg, color = 0x1eff00)
+        async def button_callback(interaction):
+            await interaction.response.edit_message(embed = embed, view = view)
+
+        button1.callback = button_callback
+
+        view = View()
+        view.add_item(button1)
+
+        embed=discord.Embed(title =f'延遲 `{round(self.bot.latency*1000)}` ms', color = 0x1eff00)
         embed.set_author(name = "🤖 機器人狀態 🤖")
 
-        
+        await ctx.reply(mention_author = False, embed = embed, view = view)
 
-#        async def button_callback(interaction):
-#            await interaction.response.edit_message(embed = embed, view = view)
-
-#        button1.callback = button_callback
-
-#        view = View()
-#        view.add_item(button1)
-        
-        await ctx.reply(mention_author = False ,embed = embed) #view = view
+    @commands.command()
+    async def timer(self, ctx, seconds):
+        try:
+            secondint = int(seconds)
+            if secondint > 500:
+                await ctx.send("我無法計時那麼久...")
+                raise BaseException
+            if secondint <= 0:
+                await ctx.send("錯誤時間")
+                raise BaseException
+            message = await ctx.send("Timer: {seconds}")
+            while True:
+                secondint -= 1
+                if secondint == 0:
+                    await message.edit(content="時間到")
+                    break
+                await message.edit(content=f"Timer: {secondint}")
+                await asyncio.sleep(1)
+            await ctx.send(f"{ctx.author.mention} 你時間到了!!")
+        except ValueError:
+            await ctx.send("Must be a number!")
 
 
     @commands.command()
@@ -72,6 +92,18 @@ class Main(Cog_EX):
         embed.add_field(name="Twitter", value="@Yin_Cheng0106", inline=False)
         embed.add_field(name="Twitch", value="胤啦(yincheng0106)", inline=True)
         await ctx.send(embed=embed)
+
+#    @commands.command()
+#    async def test(self, ctx):
+#        embed = discord.Embed(title = f"real time embed test", color = discord.Color.green())
+#        embed.add_field(name = 'Test', value = 'Hello this is a test')
+
+#        update = await ctx.send(embed = embed)
+
+#        new_em = discord.Embed(title = f"real time embed test", color = discord.Color.green())
+#        new_em.add_field(name = 'Test', value = 'This text has changed')
+#        update = await ctx.send(embed = new_em)
+#        await update.edit(embed= new_em)
 
 def setup(bot):
     bot.add_cog(Main(bot))

@@ -113,5 +113,6 @@ class Event(Cog_EX):
 #        await msg.channel.send("訊息刪除者：" + str(msg.author))
 
 
+
 def setup(bot):
     bot.add_cog(Event(bot))

@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import json
 import os
+import asyncio
 
 with open('setting.json', mode='r', encoding='utf8') as jfile:
    jdata = json.load(jfile)
@@ -29,6 +30,7 @@ async def unload(ctx, extension):
     embed=discord.Embed(title=f'✅ ‖ **{extension}** 移除成功',color=0x00ff62)
     embed.set_author(name="🛑 系統通知 🛑")
     await ctx.send(embed=embed)
+    
 @bot.command()
 async def reload(ctx, extension):
     bot.reload_extension(f'cmds.{extension}')
