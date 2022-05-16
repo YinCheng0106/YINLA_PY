@@ -13,7 +13,7 @@ class Event(Cog_EX):
         channel = self.bot.get_channel(int(jdata['CHANNEL']))
         embed=discord.Embed(title=f'✨ ‖ **{member}** 加入!', color=0xff8800)
         embed.set_author(name="🛑 成員加入通知 🛑")
-        await channel.send(embed=embed)
+        await channel.send(member.mention , embed=embed)
 
     @commands.Cog.listener()
     async def on_member_remove(self, member):
@@ -26,8 +26,8 @@ class Event(Cog_EX):
     async def on_message(self, msg):
         if msg.content == '安安' :
             await msg.channel.send('嗨')
-        elif msg.content == 'test' :
-            await msg.channel.send('ok')
+        elif msg.content == 'test':
+            await msg.channel.send('<@&801115250165940244>') # @USER ==> '<@使用者ID>' #@ROLE ==> '<@&身分組ID>'
         elif msg.content == '早上好' :
             await msg.channel.send('中國\n我現在有冰淇淋')
         elif msg.content == '晚安' :
@@ -48,7 +48,6 @@ class Event(Cog_EX):
         elif msg.content == '木瓜好美':
             await msg.delete()
             await msg.channel.send('噓!，你太誠實了啦😎')
-
 
     #ERROR HANDLER
     @commands.Cog.listener()

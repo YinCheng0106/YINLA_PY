@@ -8,7 +8,7 @@ class Main(Cog_EX):
 
     @commands.command()
     async def ping(self, ctx):
-        # 按鈕 #https://youtu.be/kNUuYEWGOxA
+        # 按鈕 # https://youtu.be/kNUuYEWGOxA
 #        button1 = Button(label = "更新", style = discord.ButtonStyle.green, emoji = "🔁")
 
         msg = f'延遲 `{round(self.bot.latency*1000)}` ms'
@@ -25,7 +25,7 @@ class Main(Cog_EX):
 #        view = View()
 #        view.add_item(button1)
         
-        await ctx.send(embed = embed) #view = view
+        await ctx.reply(mention_author = False ,embed = embed) #view = view
 
 
     @commands.command()
