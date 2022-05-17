@@ -1,6 +1,8 @@
 # **YINLA**
+-------------
 ## *目前還在製作中...*
 
+-------------
 >指令
 
 |  指令   |  說明  |
@@ -30,7 +32,7 @@
 # **作者**
 ## Yin Cheng
  <img src="https://i.imgur.com/TzmL9UQ.png" width="40%">
-
+<https://twitter.com/Yin_Cheng0106>
 -------
 
 IG ：[\_yincheng\_](https://www.instagram.com/_yincheng_/)
