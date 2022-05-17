@@ -15,7 +15,8 @@
 
 ----------
 # **作者**
-## Yin Cheng <img src="https://i.imgur.com/TzmL9UQ.png" width="40%">
+## Yin Cheng
+ <img src="https://i.imgur.com/TzmL9UQ.png" width="40%">
 
 -------
 
