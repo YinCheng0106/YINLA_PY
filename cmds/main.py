@@ -1,11 +1,9 @@
 import datetime
-from ast import Break
 import discord
 from discord.ui import Button, View
 from discord.ext import commands
 from core.classes import Cog_EX
 import asyncio
-import time
 
 class Main(Cog_EX):
 

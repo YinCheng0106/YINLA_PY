@@ -22,7 +22,7 @@ async def on_ready():
 async def ch_pr():
     await bot.wait_until_ready()
 
-    statuses = [f"管理 {len(bot.guilds)} 個伺服器" , ">command", "discord.py"]
+    statuses = [f"管理 {len(bot.guilds)} 個伺服器" , "查詢指令 >command", "discord.py"]
 
     while not bot.is_closed():
 
