@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 from core.classes import Cog_EX
 import json
+import asyncio
 
 with open('setting.json', mode='r', encoding='utf8') as jfile:
    jdata = json.load(jfile)
@@ -48,6 +49,7 @@ class Event(Cog_EX):
         elif msg.content == '木瓜好美':
             await msg.delete()
             await msg.channel.send('噓!，你太誠實了啦😎')
+    
 
     #ERROR HANDLER
     @commands.Cog.listener()
@@ -111,7 +113,6 @@ class Event(Cog_EX):
 #                counter += 1
 #        await msg.channel.send("已刪除訊息：" + str(msg.content))
 #        await msg.channel.send("訊息刪除者：" + str(msg.author))
-
 
 
 def setup(bot):

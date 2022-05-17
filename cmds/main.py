@@ -1,9 +1,9 @@
-from certifi import contents
 import discord
 from discord.ui import Button, View
 from discord.ext import commands
 from core.classes import Cog_EX
 import asyncio
+import time
 
 class Main(Cog_EX):
 
@@ -46,8 +46,7 @@ class Main(Cog_EX):
             await ctx.send(f"{ctx.author.mention} 你時間到了!!")
         except ValueError:
             await ctx.send("Must be a number!")
-
-
+    
     @commands.command()
     async def say(self, ctx, *,msg):
         await ctx.message.delete()
@@ -92,6 +91,8 @@ class Main(Cog_EX):
         embed.add_field(name="Twitter", value="@Yin_Cheng0106", inline=False)
         embed.add_field(name="Twitch", value="胤啦(yincheng0106)", inline=True)
         await ctx.send(embed=embed)
+
+
 
 #    @commands.command()
 #    async def test(self, ctx):
