@@ -3,6 +3,7 @@ from discord.ext import commands
 import json
 import os
 import asyncio
+import random
 
 with open('setting.json', mode='r', encoding='utf8') as jfile:
    jdata = json.load(jfile)
@@ -13,9 +14,25 @@ bot = commands.Bot(command_prefix='>',intents = intents)
 
 @bot.event
 async def on_ready():
+
     print(">>bot is online<<")
-    game = discord.Activity(type = discord.ActivityType.watching, name = "如何建構 內臟", url = "https://www.twitch.tv/yincheng0106" ) #機器人狀態
-    await bot.change_presence(status = discord.Status.dnd, activity = game)
+#    game = discord.Activity(type = discord.ActivityType.watching, name = "如何建構 內臟", url = "https://www.twitch.tv/yincheng0106" ) #機器人狀態
+#    await bot.change_presence(status = discord.Status.dnd, activity = game)
+
+async def ch_pr():
+    await bot.wait_until_ready()
+
+    statuses = [f"管理 {len(bot.guilds)} 個伺服器" , ">command", "discord.py"]
+
+    while not bot.is_closed():
+
+        status = random.choice(statuses)
+
+        await bot.change_presence(activity = discord.Game(name = status))
+
+        await asyncio.sleep(5)
+
+bot.loop.create_task(ch_pr())
 
 @bot.command()
 async def load(ctx, extension):
