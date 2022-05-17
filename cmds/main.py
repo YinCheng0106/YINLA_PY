@@ -1,3 +1,5 @@
+import datetime
+from ast import Break
 import discord
 from discord.ui import Button, View
 from discord.ext import commands
@@ -27,25 +29,89 @@ class Main(Cog_EX):
 
     @commands.command()
     async def timer(self, ctx, seconds):
-        try:
-            secondint = int(seconds)
-            if secondint > 500:
-                await ctx.send("我無法計時那麼久...")
-                raise BaseException
-            if secondint <= 0:
-                await ctx.send("錯誤時間")
-                raise BaseException
-            message = await ctx.send("Timer: {seconds}")
-            while True:
-                secondint -= 1
-                if secondint == 0:
-                    await message.edit(content="時間到")
-                    break
-                await message.edit(content=f"Timer: {secondint}")
-                await asyncio.sleep(1)
-            await ctx.send(f"{ctx.author.mention} 你時間到了!!")
-        except ValueError:
-            await ctx.send("Must be a number!")
+
+        secondint = int(seconds)
+
+        if secondint > 600:
+            embed=discord.Embed(title="我無法計時那麼久...", color=0xff0000)
+            embed.set_author(name="🛑 系統通知 🛑")
+            msg = await ctx.send(embed = embed)
+            await ctx.message.delete()
+            await asyncio.sleep(3)
+            await msg.delete()
+
+        if secondint <= 0:
+            embed=discord.Embed(title="拜託...時間沒有負的", color=0xff0000)
+            embed.set_author(name="🛑 系統通知 🛑")
+            msg = await ctx.send(embed = embed)
+            await ctx.message.delete()
+            await asyncio.sleep(3)
+            await msg.delete()
+        embed = discord.Embed(title=f"剩餘時間：`{seconds}`", color=0xff0000)
+        embed.set_author(name="⏱️ 計時器 ⏱️")
+        message = await ctx.send(embed = embed)
+            
+        while True:
+            secondint -= 1
+            if secondint == 0:
+                break
+            
+            embed2 = discord.Embed(title=f"剩餘時間：`{secondint}`", color=0xff0000)
+            embed2.set_author(name="⏱️ 計時器 ⏱️")
+
+            msg = await message.edit(embed = embed2)
+            await asyncio.sleep(1)
+        await ctx.send(f"{ctx.author.mention} 你時間到了!!")
+        await ctx.message.delete()
+        await msg.delete()
+
+
+    @commands.command()
+    async def nt(self, ctx):
+    
+        today = datetime.datetime.now()
+        dt = today.strftime(" ``%m`` / ``%d`` / ``%Y``"+" "+"``%H`` : ``%M`` : ``%S``")
+        embed = discord.Embed(title= dt , color=0xff0000)
+        embed.set_author(name="🕰️時間🕰️")
+    
+        time = await ctx.send(embed = embed)
+        await asyncio.sleep(10)
+        await time.delete()
+        await ctx.delete()
+            
+
+    @commands.command()
+    async def 泡麵(self, ctx):
+#        button2 = Button(label = "完成", style = discord.ButtonStyle.green, emoji = "🍽️")
+        secondint = 180
+
+#        async def button_callback(interaction):
+#            await interaction.response.delete_message()
+
+#        button2.callback = button_callback
+
+#        view = View()
+#        view.add_item(button2)
+
+        embed = discord.Embed(title=f"剩餘時間 : `{secondint}`", color=0xff0000)
+        embed.set_author(name="⏱️ 泡麵計時器 ⏱️")
+        message = await ctx.send(embed = embed)
+            
+        while True:
+            secondint -= 1
+            if secondint == 0:
+                break
+
+            embed2 = discord.Embed(title=f"剩餘時間 : `{secondint}`", color=0xff0000)
+            embed2.set_author(name="⏱️ 泡麵計時器 ⏱️")
+
+            msg = await message.edit(embed = embed2)
+            await asyncio.sleep(1)
+        fin = await ctx.send(f"{ctx.author.mention} 你泡麵可以吃了!!" )
+        await ctx.message.delete()
+        await msg.delete()
+        await asyncio.sleep(60)
+        await fin.delete()
     
     @commands.command()
     async def say(self, ctx, *,msg):
@@ -64,7 +130,12 @@ class Main(Cog_EX):
     @commands.command()
     async def command(self, ctx):
         embed=discord.Embed(title="📍 ‖ 指令專區", color=0xfbff00)
+        
+        embed.add_field(name=">泡麵", value="煮泡麵時幫你計時(180秒)", inline=True)
+        embed.add_field(name=">timer [秒數]", value="計時器(秒)", inline=True)
+        embed.add_field(name=">nt", value="現在時間", inline=True)
         embed.add_field(name=">say [內容]", value="讓機器人說話", inline=True)
+
         embed.add_field(name=">clean [數量]", value="清除訊息", inline=True)
         embed.add_field(name=">ping", value="檢視機器人延遲", inline=False)
         embed.add_field(name=">into", value="檢視機器人資訊", inline=False)
