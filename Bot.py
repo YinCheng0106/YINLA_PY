@@ -14,21 +14,19 @@ bot = commands.Bot(command_prefix='>',intents = intents)
 
 @bot.event
 async def on_ready():
-
-    print(">>bot is online<<")
-#    game = discord.Activity(type = discord.ActivityType.watching, name = "如何建構 內臟", url = "https://www.twitch.tv/yincheng0106" ) #機器人狀態
-#    await bot.change_presence(status = discord.Status.dnd, activity = game)
+    await bot.change_presence(status = discord.Status.idle,activity = discord.Game(name = "啟動中..."))
+    print(">>機器人啟動完成<<")
 
 async def ch_pr():
     await bot.wait_until_ready()
 
-    statuses = [f"管理 {len(bot.guilds)} 個伺服器" , "查詢指令 >command", "discord.py"]
+    statuses = [f" {len(bot.guilds)} 個伺服器 ‖ YINLA" , "查指令 ‖ >command", "discord.py ‖ YINLA"]
 
     while not bot.is_closed():
 
         status = random.choice(statuses)
 
-        await bot.change_presence(activity = discord.Game(name = status))
+        await bot.change_presence(status = discord.Status.dnd,activity = discord.Game(name = status))
 
         await asyncio.sleep(5)
 
