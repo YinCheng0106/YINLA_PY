@@ -76,6 +76,7 @@ class Bank(Cog_EX):
         await ctx.send(embed = em)
 
     @commands.command()
+    async def lm(self, ctx, member : discord.Member):
         await open_account(member)
         user = member
         users = await get_bank_data()
