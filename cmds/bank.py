@@ -1,3 +1,4 @@
+from pickle import NONE
 import discord
 from discord.ext import commands
 from core.classes import Cog_EX
@@ -61,22 +62,30 @@ async def update_bank(user, change = 0, mode = "wallet"):
 class Bank(Cog_EX):
 
     @commands.command()
-    async def money(self, ctx):
+    async def m(self, ctx, member = None):
+
         await open_account(ctx.author)
         user = ctx.author
         users = await get_bank_data()
         wallet = users[str(user.id)]["wallet"]
         bank = users[str(user.id)]["bank"]
 
-        em = discord.Embed(title = f"{ctx.author.name} 的錢包", color = discord.Color.red())
+        em = discord.Embed(title = f"{ctx.author} 的錢包", color = discord.Color.red())
         em.add_field(name = "錢包餘額", value = wallet)
         em.add_field(name = "銀行餘額", value = bank)
         await ctx.send(embed = em)
 
-    # >slots [押金] [倍率]
+    @commands.command()
+        await open_account(member)
+        user = member
+        users = await get_bank_data()
+        wallet = users[str(user.id)]["wallet"]
+        bank = users[str(user.id)]["bank"]
 
-
-
+        em = discord.Embed(title = f"{member} 的錢包", color = discord.Color.red())
+        em.add_field(name = "錢包餘額", value = wallet)
+        em.add_field(name = "銀行餘額", value = bank)
+        await ctx.send(embed = em)
 
 def setup(bot):
     bot.add_cog(Bank(bot))
