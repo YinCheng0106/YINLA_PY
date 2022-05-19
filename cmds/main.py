@@ -20,7 +20,7 @@ class Main(Cog_EX):
         view = View()
         view.add_item(button1)
 
-        embed=discord.Embed(title =f'延遲 `{round(self.bot.latency*1000)}` ms', color = 0x1eff00)
+        embed=discord.Embed(title =f'延遲 `{round(self.bot.latency*1000)}` ms', color = 0x1eff00, timestamp = datetime.datetime.now())
         embed.set_author(name = "🤖 機器人狀態 🤖")
 
         await ctx.reply(mention_author = False, embed = embed, view = view)
@@ -31,7 +31,7 @@ class Main(Cog_EX):
         secondint = int(seconds)
 
         if secondint > 600:
-            embed=discord.Embed(title="我無法計時那麼久...", color=0xff0000)
+            embed=discord.Embed(title="我無法計時那麼久...", color=0xff0000, timestamp = datetime.datetime.now())
             embed.set_author(name="🛑 系統通知 🛑")
             msg = await ctx.send(embed = embed)
             await ctx.message.delete()
@@ -39,13 +39,13 @@ class Main(Cog_EX):
             await msg.delete()
 
         if secondint <= 0:
-            embed=discord.Embed(title="拜託...時間沒有負的", color=0xff0000)
+            embed=discord.Embed(title="拜託...時間沒有負的", color=0xff0000, timestamp = datetime.datetime.now())
             embed.set_author(name="🛑 系統通知 🛑")
             msg = await ctx.send(embed = embed)
             await ctx.message.delete()
             await asyncio.sleep(3)
             await msg.delete()
-        embed = discord.Embed(title=f"剩餘時間：`{seconds}`", color=0xff0000)
+        embed = discord.Embed(title=f"剩餘時間：`{seconds}`", color=0xff0000, timestamp = datetime.datetime.now())
         embed.set_author(name="⏱️ 計時器 ⏱️")
         message = await ctx.send(embed = embed)
             
@@ -54,7 +54,7 @@ class Main(Cog_EX):
             if secondint == 0:
                 break
             
-            embed2 = discord.Embed(title=f"剩餘時間：`{secondint}`", color=0xff0000)
+            embed2 = discord.Embed(title=f"剩餘時間：`{secondint}`", color=0xff0000, timestamp = datetime.datetime.now())
             embed2.set_author(name="⏱️ 計時器 ⏱️")
 
             msg = await message.edit(embed = embed2)
@@ -91,7 +91,7 @@ class Main(Cog_EX):
 #        view = View()
 #        view.add_item(button2)
 
-        embed = discord.Embed(title=f"剩餘時間 : `{secondint}`", color=0xff0000)
+        embed = discord.Embed(title=f"剩餘時間 : `{secondint}`", color=0xff0000, timestamp = datetime.datetime.now())
         embed.set_author(name="⏱️ 泡麵計時器 ⏱️")
         message = await ctx.send(embed = embed)
             
@@ -100,7 +100,7 @@ class Main(Cog_EX):
             if secondint == 0:
                 break
 
-            embed2 = discord.Embed(title=f"剩餘時間 : `{secondint}`", color=0xff0000)
+            embed2 = discord.Embed(title=f"剩餘時間 : `{secondint}`", color=0xff0000, timestamp = datetime.datetime.now())
             embed2.set_author(name="⏱️ 泡麵計時器 ⏱️")
 
             msg = await message.edit(embed = embed2)
@@ -119,7 +119,7 @@ class Main(Cog_EX):
     @commands.command()
     async def clean(self, ctx, num:int):
         await ctx.channel.purge(limit=num+1)
-        embed=discord.Embed(title=f"已刪除 `{num}` 則訊息", color=0xff0000)
+        embed=discord.Embed(title=f"已刪除 `{num}` 則訊息", color=0xff0000, timestamp = datetime.datetime.now())
         embed.set_author(name="🛑 系統通知 🛑")
         msg = await ctx.send(embed=embed)
         await asyncio.sleep(3)
@@ -127,7 +127,7 @@ class Main(Cog_EX):
 
     @commands.command()
     async def command(self, ctx):
-        embed=discord.Embed(title="📍 ‖ 指令專區", color=0xfbff00)
+        embed=discord.Embed(title="📍 ‖ 指令專區", color=0xfbff00, timestamp = datetime.datetime.now())
         
         embed.add_field(name=">泡麵", value="煮泡麵時幫你計時(180秒)", inline=True)
         embed.add_field(name=">timer [秒數]", value="計時器(秒)", inline=True)
@@ -142,7 +142,7 @@ class Main(Cog_EX):
 
     @commands.command()
     async def into(self, ctx):
-        embed=discord.Embed(title="機器人資訊", color=0x16a5fe)
+        embed=discord.Embed(title="機器人資訊", color=0x16a5fe, timestamp = datetime.datetime.now())
         embed.set_author(name="YINLA", url="https://discord.gg/We6enK7wb3", icon_url="https://pbs.twimg.com/media/FOJUUgpVgAIwig9?format=jpg&name=4096x4096")
         embed.add_field(name="🎂 ‖ 誕生日期", value="`2022/02/09`", inline=True)
         embed.add_field(name="🛑 ‖ 正式啟用", value="`????/??/??`", inline=True)
@@ -153,7 +153,7 @@ class Main(Cog_EX):
 
     @commands.command()
     async def yin(self, ctx):
-        embed=discord.Embed(title="機器人創作者資訊", color=0xffffff)
+        embed=discord.Embed(title="機器人創作者資訊", color=0xffffff, timestamp = datetime.datetime.now())
         embed.set_author(name="Yin Cheng", url="https://allmy.bio/yincheng", icon_url="https://i.imgur.com/TzmL9UQ.png" )
         embed.add_field(name="IG", value="\_yincheng\_", inline=False)
         embed.add_field(name="Discord", value="YinCheng#8104", inline=True)

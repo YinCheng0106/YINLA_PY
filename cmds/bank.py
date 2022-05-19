@@ -1,30 +1,20 @@
-from pickle import NONE
 import discord
 from discord.ext import commands
 from core.classes import Cog_EX
 import json
 import random
 import asyncio
+import datetime
 
 with open('setting.json', mode='r', encoding='utf8') as jfile:
    jdata = json.load(jfile)
+
 
 async def open_account(user):
     pass
 
 async def get_bank_data():
     pass
-
-async def update_bank(user, change = 0, mode = "wallet"):
-    pass
-    users = await get_bank_data()
-    users[str(user.id)][mode] += change
-
-    with open("main_bank.json", "w") as f:
-        json.dump(users, f)
-
-    money = [users[str(user.id)]["wallet"], users[str(user.id)]["bank"]]    
-    return money
 
 async def open_account(user):
         users = await get_bank_data()
@@ -48,45 +38,43 @@ async def get_bank_data():
         
         return users
 
-async def update_bank(user, change = 0, mode = "wallet"):
-    pass
-    users = await get_bank_data()
-    users[str(user.id)][mode] += change
-    with open("main_bank.json", "w") as f:
-        json.dump(users, f)
-    bal = [users[str(user.id)]["wallet"], users[str(user.id)]["bank"]]    
-    return bal
-
-
 
 class Bank(Cog_EX):
 
     @commands.command()
-    async def m(self, ctx, member = None):
-
+    async def m(self, ctx ):
         await open_account(ctx.author)
+
         user = ctx.author
         users = await get_bank_data()
         wallet = users[str(user.id)]["wallet"]
         bank = users[str(user.id)]["bank"]
 
-        em = discord.Embed(title = f"{ctx.author} 的錢包", color = discord.Color.red())
-        em.add_field(name = "錢包餘額", value = wallet)
-        em.add_field(name = "銀行餘額", value = bank)
+        em = discord.Embed(title = f"{ctx.author} 的錢包", color = discord.Color.red(),timestamp = datetime.datetime.now())
+        em.set_thumbnail(url = "https://3wtrade.com/wp-content/uploads/2021/08/bit.gif")
+        em.set_author(name = "🏦 銀行資訊 🏦")
+        em.add_field(name = "錢包餘額", value = f" `{wallet}` ")
+        em.add_field(name = "銀行餘額", value = f" `{bank}` ")
+
         await ctx.send(embed = em)
 
     @commands.command()
-    async def lm(self, ctx, member : discord.Member):
+    async def lm(self, ctx, member : discord.Member ):
         await open_account(member)
+
         user = member
         users = await get_bank_data()
         wallet = users[str(user.id)]["wallet"]
         bank = users[str(user.id)]["bank"]
 
-        em = discord.Embed(title = f"{member} 的錢包", color = discord.Color.red())
-        em.add_field(name = "錢包餘額", value = wallet)
-        em.add_field(name = "銀行餘額", value = bank)
+        em = discord.Embed(title = f"{member} 的錢包", color = discord.Color.red(),timestamp = datetime.datetime.now())
+        em.set_thumbnail(url = "https://3wtrade.com/wp-content/uploads/2021/08/bit.gif")
+        em.set_author(name = "🏦 銀行資訊 🏦")
+        em.add_field(name = "錢包餘額", value = f" `{wallet}` ")
+        em.add_field(name = "銀行餘額", value = f" `{bank}` ")
+
         await ctx.send(embed = em)
+    #不知為何抓不到 user.avatar_url
 
 def setup(bot):
     bot.add_cog(Bank(bot))

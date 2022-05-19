@@ -1,8 +1,10 @@
 import discord
 from discord.ext import commands
 from core.classes import Cog_EX
+from cmds.bank import Bank
 import json
 import asyncio
+import datetime
 
 with open('setting.json', mode='r', encoding='utf8') as jfile:
    jdata = json.load(jfile)
@@ -12,14 +14,14 @@ class Event(Cog_EX):
     @commands.Cog.listener()
     async def on_member_join(self, member):
         channel = self.bot.get_channel(int(jdata['CHANNEL']))
-        embed=discord.Embed(title=f'✨ ‖ **{member}** 加入!', color=0xff8800)
+        embed=discord.Embed(title=f'✨ ‖ **{member}** 加入!', color=0xff8800, timestamp = datetime.datetime.now())
         embed.set_author(name="🛑 成員加入通知 🛑")
         await channel.send(member.mention , embed=embed)
 
     @commands.Cog.listener()
     async def on_member_remove(self, member):
         channel = self.bot.get_channel(int(jdata['CHANNEL']))
-        embed=discord.Embed(title=f'😢 ‖ **{member}** 離開了...', color=0xff8800)
+        embed=discord.Embed(title=f'😢 ‖ **{member}** 離開了...', color=0xff8800, timestamp = datetime.datetime.now())
         embed.set_author(name="🛑 成員離開通知 🛑")
         await channel.send(embed=embed)
 
@@ -59,24 +61,28 @@ class Event(Cog_EX):
             return
 
         if isinstance(error,commands.errors.MissingRequiredArgument):
-            embed=discord.Embed(title=" ❓‖ 指令不完整，請重新輸入\n輸入 `>command` 查詢現有指令", color=0xff0000)
+            embed=discord.Embed(title=" ❓‖ 指令不完整，請重新輸入\n輸入 `>command` 查詢現有指令", color=0xff0000, timestamp = datetime.datetime.now())
             embed.set_author(name="⚠️ 發生錯誤 ⚠️")
             await ctx.send(embed=embed)
         elif isinstance(error, commands.errors.CommandNotFound):
-            embed=discord.Embed(title=" ❓‖ 無此指令\n輸入 `>command` 查詢現有指令", color=0xff0000)
+            embed=discord.Embed(title=" ❓‖ 無此指令\n輸入 `>command` 查詢現有指令", color=0xff0000, timestamp = datetime.datetime.now())
             embed.set_author(name="⚠️ 發生錯誤 ⚠️")
             await ctx.send(embed=embed)
         else:
-            embed=discord.Embed(title=" 😕 ‖ 請通報 **管理員** 修復",color=0xff0000)
+            embed=discord.Embed(title=" 😕 ‖ 請通報 **管理員** 修復",color=0xff0000, timestamp = datetime.datetime.now())
             embed.set_author(name="⚠️ 發生未知錯誤 ⚠️")
             await ctx.send(embed=embed)
     
     # https://youtu.be/ojSb06_jm9Y?list=PLSCgthA1Anif1w6mKM3O6xlBGGypXtrtN&t=1748
     #個別錯誤處理
-    #@指令名稱.error
-    #async def 指令名稱_error(self, ctx, error):
-    #    if isinstance(error, commands.errors.MissingRequiredArgument):
-    #        await ctx.send("錯誤訊息")
+    @Bank.lm.error
+    async def lm_error(self, ctx, error):
+        if isinstance(error, commands.errors.MemberNotFound):
+            await ctx.send("誰?")
+        elif isinstance(error, commands.errors.MissingRequiredArgument):
+            embed=discord.Embed(title=" ❓‖ 指令不完整，請重新輸入\n輸入 `>command` 查詢現有指令", color=0xff0000, timestamp = datetime.datetime.now())
+            embed.set_author(name="⚠️ 發生錯誤 ⚠️")
+            await ctx.send(embed = embed)
 
     #新增反應獲得身分組
     @commands.Cog.listener()
@@ -86,7 +92,7 @@ class Event(Cog_EX):
                 guild = self.bot.get_guild(payload.guild_id)
                 role = guild.get_role(974906252079550505)
                 await payload.member.add_roles(role)
-                embed=discord.Embed(title=f"✅ ‖ 已新增 {role} 身分組",color=0xff0000)
+                embed=discord.Embed(title=f"✅ ‖ 已新增 {role} 身分組",color=0xff0000, timestamp = datetime.datetime.now())
                 embed.set_author(name="💫 身分組領取通知 💫")
                 await payload.member.send(embed = embed)
 
@@ -99,7 +105,7 @@ class Event(Cog_EX):
                 user = guild.get_member(payload.user_id)
                 role = guild.get_role(974906252079550505)
                 await user.remove_roles(role)
-                embed=discord.Embed(title=f"✅ ‖ 已移除 {role} 身分組",color=0xff0000)
+                embed=discord.Embed(title=f"✅ ‖ 已移除 {role} 身分組",color=0xff0000, timestamp = datetime.datetime.now())
                 embed.set_author(name="💫 身分組移除通知 💫")
                 await user.send(embed = embed)
     
