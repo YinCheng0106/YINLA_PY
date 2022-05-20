@@ -83,7 +83,5 @@ class Guess(Cog_EX):
             await ctx.send(embed=embed)
 
 
-               
-
 def setup(bot):
     bot.add_cog(Guess(bot))
