@@ -15,7 +15,9 @@ bot = commands.Bot(command_prefix='>',intents = intents)
 
 @bot.event
 async def on_ready():
-    await bot.change_presence(status = discord.Status.idle,activity = discord.Game(name = "啟動中..."))
+    await bot.change_presence(status = discord.Status.idle,activity = discord.Game(name = ">>>>>啟動中<<<<"))
+    await asyncio.sleep(0.5)
+    await bot.change_presence(status = discord.Status.online,activity = discord.Game(name = ">>機器人啟動完成<<"))
     print(">>機器人啟動完成<<")
 
 async def ch_pr():

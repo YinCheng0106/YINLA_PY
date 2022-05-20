@@ -78,7 +78,10 @@ class Event(Cog_EX):
     @Bank.lm.error
     async def lm_error(self, ctx, error):
         if isinstance(error, commands.errors.MemberNotFound):
-            await ctx.send("誰?")
+            msg = await ctx.send("誰?")
+            await asyncio.sleep(3)
+            await ctx.message.delete()
+            await msg.delete()
         elif isinstance(error, commands.errors.MissingRequiredArgument):
             embed=discord.Embed(title=" ❓‖ 指令不完整，請重新輸入\n輸入 `>command` 查詢現有指令", color=0xff0000, timestamp = datetime.datetime.now())
             embed.set_author(name="⚠️ 發生錯誤 ⚠️")

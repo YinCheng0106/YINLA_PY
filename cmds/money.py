@@ -4,6 +4,7 @@ from core.classes import Cog_EX
 import json
 import random
 import asyncio
+import datetime
 
 with open('setting.json', mode='r', encoding='utf8') as jfile:
    jdata = json.load(jfile)
@@ -118,7 +119,7 @@ class Money(Cog_EX):
         pass
         await open_account(ctx.author)
         if amount == None:
-            embed=discord.Embed(title="請輸入金額+倍率", color=0xff0000)
+            embed=discord.Embed(title="請輸入金額+倍率", color=0xff0000, timestamp = datetime.datetime.now())
             embed.set_author(name="⚠️ 錯誤 ⚠️")
             embed.set_thumbnail(url="https://play-lh.googleusercontent.com/i-0HlK6I-K5ZVI28HFa4iXz0T22Mg2WjQ4gMsEYvqmSNdifp2NE41ZiaUCavmbIimQ")
             msg = await ctx.send(embed=embed)
@@ -128,7 +129,7 @@ class Money(Cog_EX):
             return
 
         if mang == None:
-            embed=discord.Embed(title="請輸入正整數的倍率，並且介於 0 ~ 10 之間", color=0xff0000)
+            embed=discord.Embed(title="請輸入正整數的倍率，並且介於 0 ~ 10 之間", color=0xff0000, timestamp = datetime.datetime.now())
             embed.set_author(name="⚠️ 錯誤 ⚠️")
             embed.set_thumbnail(url="https://play-lh.googleusercontent.com/i-0HlK6I-K5ZVI28HFa4iXz0T22Mg2WjQ4gMsEYvqmSNdifp2NE41ZiaUCavmbIimQ")
             msg = await ctx.send(embed=embed)
@@ -142,7 +143,7 @@ class Money(Cog_EX):
         mang = int(mang)
 
         if mang < 0:
-            embed=discord.Embed(title="請輸入正整數的倍率，並且介於 0 ~ 10 之間", color=0xff0000)
+            embed=discord.Embed(title="請輸入正整數的倍率，並且介於 0 ~ 10 之間", color=0xff0000, timestamp = datetime.datetime.now())
             embed.set_author(name="⚠️ 錯誤 ⚠️")
             embed.set_thumbnail(url="https://play-lh.googleusercontent.com/i-0HlK6I-K5ZVI28HFa4iXz0T22Mg2WjQ4gMsEYvqmSNdifp2NE41ZiaUCavmbIimQ")
             msg = await ctx.send(embed=embed)
@@ -152,7 +153,7 @@ class Money(Cog_EX):
             return
         
         if bal[0] <= 0:
-            embed=discord.Embed(title="餘額不足", color=0xff0000)
+            embed=discord.Embed(title="餘額不足", color=0xff0000, timestamp = datetime.datetime.now())
             embed.set_author(name="⚠️ 銀行系統 ⚠️")
             embed.set_thumbnail(url="https://c.tenor.com/o6_Suc3YJq4AAAAC/no-money-please.gif")
             msg = await ctx.send(embed=embed)
@@ -161,7 +162,7 @@ class Money(Cog_EX):
             await msg.delete()
             return 
         if amount > bal[0]:
-            embed=discord.Embed(title="餘額不足", color=0xff0000)
+            embed=discord.Embed(title="餘額不足", color=0xff0000, timestamp = datetime.datetime.now())
             embed.set_author(name="⚠️ 銀行系統 ⚠️")
             embed.set_thumbnail(url="https://c.tenor.com/o6_Suc3YJq4AAAAC/no-money-please.gif")
             msg = await ctx.send(embed=embed)
@@ -170,7 +171,7 @@ class Money(Cog_EX):
             await msg.delete()
             return
         if amount < 0:
-            embed=discord.Embed(title="請輸入 `正值` ", color=0xff0000)
+            embed=discord.Embed(title="請輸入 `正值` ", color=0xff0000, timestamp = datetime.datetime.now())
             embed.set_author(name="⚠️ 銀行系統 ⚠️")
             embed.set_thumbnail(url="https://c.tenor.com/o6_Suc3YJq4AAAAC/no-money-please.gif")
             msg = await ctx.send(embed=embed)
@@ -180,7 +181,7 @@ class Money(Cog_EX):
             return
         # 做出限制
         if amount > 201 or mang > 10 :
-            embed=discord.Embed(title="請輸入正整數的倍率，並且介於 0 ~ 10 之間", color=0xff0000)
+            embed=discord.Embed(title="請輸入正整數的倍率，並且介於 0 ~ 10 之間", color=0xff0000, timestamp = datetime.datetime.now())
             embed.set_author(name="⚠️ 錯誤 ⚠️")
             embed.set_thumbnail(url="https://play-lh.googleusercontent.com/i-0HlK6I-K5ZVI28HFa4iXz0T22Mg2WjQ4gMsEYvqmSNdifp2NE41ZiaUCavmbIimQ")
             msg = await ctx.send(embed=embed)
@@ -201,12 +202,12 @@ class Money(Cog_EX):
             await asyncio.sleep(3)
             await msg0.delete()
             await update_bank(ctx.author, ans)
-            em_1=discord.Embed(title=f"{final}", color=0xff0000)
+            em_1=discord.Embed(title=f"{final}", color=0xff0000, timestamp = datetime.datetime.now())
             em_1.set_author(name="🎰 拉霸機 🎰")
             await ctx.message.delete()
             await ctx.send(embed=em_1)
 
-            em_2=discord.Embed(title=f"你贏了 `{ans}` 塊錢", color=0xff0000)
+            em_2=discord.Embed(title=f"你贏了 `{ans}` 塊錢", color=0xff0000, timestamp = datetime.datetime.now())
             em_2.set_author(name="🎰 拉霸機 🎰")
             await ctx.send(ctx.author.mention,embed=em_2)
         # lose
@@ -215,11 +216,11 @@ class Money(Cog_EX):
             await asyncio.sleep(3)
             await msg0.delete()
             await update_bank(ctx.author, pos)
-            em_1=discord.Embed(title=f"{final}", color=0xff0000)
+            em_1=discord.Embed(title=f"{final}", color=0xff0000, timestamp = datetime.datetime.now())
             em_1.set_author(name="🎰 拉霸機 🎰")
             await ctx.message.delete()
             await ctx.send(embed=em_1)
-            em_2=discord.Embed(title=f"你輸了 `{pos}` 塊錢", color=0xff0000)
+            em_2=discord.Embed(title=f"你輸了 `{pos}` 塊錢", color=0xff0000, timestamp = datetime.datetime.now())
             em_2.set_author(name="🎰 拉霸機 🎰")
             await ctx.send(ctx.author.mention,embed=em_2)
             await update_bank(ctx.author, pos)
@@ -227,7 +228,7 @@ class Money(Cog_EX):
     @commands.command()
     async def beg(self, ctx):
         pass
-
+        
         await open_account(ctx.author)
 
         users = await get_bank_data()
@@ -235,7 +236,7 @@ class Money(Cog_EX):
 
         earnings = random.randrange(101)
 
-        embed=discord.Embed(title=f"有人給你 {earnings} 塊錢", color=0xff0000)
+        embed=discord.Embed(title=f"有人給你 {earnings} 塊錢", color=0xff0000, timestamp = datetime.datetime.now())
         embed.set_author(name="⚠️ 銀行系統 ⚠️")
         embed.set_thumbnail(url="https://mavsocial-wpengine.netdna-ssl.com/wp-content/uploads/2017/10/Showering-in-money-GIF.gif")
         await ctx.send(embed=embed)
@@ -250,7 +251,7 @@ class Money(Cog_EX):
         pass
         await open_account(ctx.author)
         if amount == None:
-            embed=discord.Embed(title="請輸入\n`提款 金額(正整數)`", color=0xff0000)
+            embed=discord.Embed(title="請輸入\n`提款 金額(正整數)`", color=0xff0000, timestamp = datetime.datetime.now())
             embed.set_author(name="⚠️ 銀行系統 ⚠️")
             embed.set_thumbnail(url="https://1.bp.blogspot.com/-K61Esafa0YU/XdjEr0_IckI/AAAAAAAOt3g/EYVmGyvW5TweaExeeSVr3rHpIjyDoTrXgCLcBGAsYHQ/s1600/AW4048160_16.gif")
             await ctx.send(embed=embed)
@@ -259,19 +260,19 @@ class Money(Cog_EX):
         bal = await update_bank(ctx.author)
         amount = int(amount)
         if amount > bal[1]:
-            embed=discord.Embed(title="存款不足", color=0xff0000)
+            embed=discord.Embed(title="存款不足", color=0xff0000, timestamp = datetime.datetime.now())
             embed.set_author(name="⚠️ 銀行系統 ⚠️")
             embed.set_thumbnail(url="https://1.bp.blogspot.com/-K61Esafa0YU/XdjEr0_IckI/AAAAAAAOt3g/EYVmGyvW5TweaExeeSVr3rHpIjyDoTrXgCLcBGAsYHQ/s1600/AW4048160_16.gif")
             await ctx.send(embed=embed)
             return 
         if amount > 10000:
-            embed=discord.Embed(title="一次能 提款 的金額為`10000`元", color=0xff0000)
+            embed=discord.Embed(title="一次能 提款 的金額為`10000`元", color=0xff0000, timestamp = datetime.datetime.now())
             embed.set_author(name="⚠️ 銀行系統 ⚠️")
             embed.set_thumbnail(url="https://1.bp.blogspot.com/-K61Esafa0YU/XdjEr0_IckI/AAAAAAAOt3g/EYVmGyvW5TweaExeeSVr3rHpIjyDoTrXgCLcBGAsYHQ/s1600/AW4048160_16.gif")
             await ctx.send(embed=embed)
             return
         if amount < 0:
-            embed=discord.Embed(title="請輸入\n`提款 金額(正整數)`", color=0xff0000)
+            embed=discord.Embed(title="請輸入\n`提款 金額(正整數)`", color=0xff0000, timestamp = datetime.datetime.now())
             embed.set_author(name="⚠️ 銀行系統 ⚠️")
             embed.set_thumbnail(url="https://1.bp.blogspot.com/-K61Esafa0YU/XdjEr0_IckI/AAAAAAAOt3g/EYVmGyvW5TweaExeeSVr3rHpIjyDoTrXgCLcBGAsYHQ/s1600/AW4048160_16.gif")
             await ctx.send(embed=embed)
@@ -279,7 +280,7 @@ class Money(Cog_EX):
 
         await update_bank(ctx.author, amount)
         await update_bank(ctx.author, -1 * amount, "bank")
-        embed=discord.Embed(title=f"你提款了 { amount } 塊錢!!!", color=0xff0000)
+        embed=discord.Embed(title=f"你提款了 { amount } 塊錢!!!", color=0xff0000, timestamp = datetime.datetime.now())
         embed.set_author(name="⚠️ 銀行系統 ⚠️")
         embed.set_thumbnail(url="https://media0.giphy.com/media/3oz8xZGfHArTvh99YI/giphy.gif")
         await ctx.send(embed=embed)
@@ -289,7 +290,7 @@ class Money(Cog_EX):
         pass
         await open_account(ctx.author)
         if amount == None:
-            embed=discord.Embed(title="請輸入`存款 金額(正整數)`", color=0xff0000)
+            embed=discord.Embed(title="請輸入`存款 金額(正整數)`", color=0xff0000, timestamp = datetime.datetime.now())
             embed.set_author(name="⚠️ 銀行系統 ⚠️")
             embed.set_thumbnail(url="https://1.bp.blogspot.com/-K61Esafa0YU/XdjEr0_IckI/AAAAAAAOt3g/EYVmGyvW5TweaExeeSVr3rHpIjyDoTrXgCLcBGAsYHQ/s1600/AW4048160_16.gif")
             await ctx.send(embed=embed)
@@ -297,19 +298,19 @@ class Money(Cog_EX):
         bal = await update_bank(ctx.author)
         amount = int(amount)
         if amount > bal[0]:
-            embed=discord.Embed(title="錢包餘額不足", color=0xff0000)
+            embed=discord.Embed(title="錢包餘額不足", color=0xff0000, timestamp = datetime.datetime.now())
             embed.set_author(name="⚠️ 銀行系統 ⚠️")
             embed.set_thumbnail(url="https://1.bp.blogspot.com/-K61Esafa0YU/XdjEr0_IckI/AAAAAAAOt3g/EYVmGyvW5TweaExeeSVr3rHpIjyDoTrXgCLcBGAsYHQ/s1600/AW4048160_16.gif")
             await ctx.send(embed=embed)
             return 
         if amount > 10000:
-            embed=discord.Embed(title="一次能 存款 的金額為`10000`元", color=0xff0000)
+            embed=discord.Embed(title="一次能 存款 的金額為`10000`元", color=0xff0000, timestamp = datetime.datetime.now())
             embed.set_author(name="⚠️ 銀行系統 ⚠️")
             embed.set_thumbnail(url="https://1.bp.blogspot.com/-K61Esafa0YU/XdjEr0_IckI/AAAAAAAOt3g/EYVmGyvW5TweaExeeSVr3rHpIjyDoTrXgCLcBGAsYHQ/s1600/AW4048160_16.gif")
             await ctx.send(embed=embed)
             return
         if amount< 0:
-            embed=discord.Embed(title="請重新輸入`存款 金額(正整數)`", color=0xff0000)
+            embed=discord.Embed(title="請重新輸入`存款 金額(正整數)`", color=0xff0000, timestamp = datetime.datetime.now())
             embed.set_author(name="⚠️ 銀行系統 ⚠️")
             embed.set_thumbnail(url="https://1.bp.blogspot.com/-K61Esafa0YU/XdjEr0_IckI/AAAAAAAOt3g/EYVmGyvW5TweaExeeSVr3rHpIjyDoTrXgCLcBGAsYHQ/s1600/AW4048160_16.gif")
             await ctx.send(embed=embed)
@@ -317,7 +318,7 @@ class Money(Cog_EX):
             
         await update_bank(ctx.author, -1 * amount)
         await update_bank(ctx.author, amount, "bank")
-        embed=discord.Embed(title=f"你存了 { amount } 塊錢!!!", color=0xff0000)
+        embed=discord.Embed(title=f"你存了 { amount } 塊錢!!!", color=0xff0000, timestamp = datetime.datetime.now())
         embed.set_author(name="⚠️ 銀行系統 ⚠️")
         embed.set_thumbnail(url="https://media0.giphy.com/media/WqFyl0uk1n54zHYxIK/giphy.gif")
         await ctx.send(embed=embed)
@@ -327,7 +328,7 @@ class Money(Cog_EX):
         await open_account(ctx.author)
         await open_account(member)
         if amount == None:
-            embed=discord.Embed(title="請輸入`轉帳 金額(正整數)`", color=0xff0000)
+            embed=discord.Embed(title="請輸入`轉帳 金額(正整數)`", color=0xff0000, timestamp = datetime.datetime.now())
             embed.set_author(name="⚠️ 銀行系統 ⚠️")
             embed.set_thumbnail(url="https://1.bp.blogspot.com/-K61Esafa0YU/XdjEr0_IckI/AAAAAAAOt3g/EYVmGyvW5TweaExeeSVr3rHpIjyDoTrXgCLcBGAsYHQ/s1600/AW4048160_16.gif")
             await ctx.send(embed=embed)
@@ -338,13 +339,13 @@ class Money(Cog_EX):
             amount = bal[0]
         amount = int(amount)
         if amount > bal[1]:
-            embed=discord.Embed(title="存款不足", color=0xff0000)
+            embed=discord.Embed(title="存款不足", color=0xff0000, timestamp = datetime.datetime.now())
             embed.set_author(name="⚠️ 銀行系統 ⚠️")
             embed.set_thumbnail(url="https://1.bp.blogspot.com/-K61Esafa0YU/XdjEr0_IckI/AAAAAAAOt3g/EYVmGyvW5TweaExeeSVr3rHpIjyDoTrXgCLcBGAsYHQ/s1600/AW4048160_16.gif")
             await ctx.send(embed=embed)
             return 
         if amount< 0:
-            embed=discord.Embed(title="請輸入`轉帳 金額(正整數)`", color=0xff0000)
+            embed=discord.Embed(title="請輸入`轉帳 金額(正整數)`", color=0xff0000, timestamp = datetime.datetime.now())
             embed.set_author(name="⚠️ 銀行系統 ⚠️")
             embed.set_thumbnail(url="https://1.bp.blogspot.com/-K61Esafa0YU/XdjEr0_IckI/AAAAAAAOt3g/EYVmGyvW5TweaExeeSVr3rHpIjyDoTrXgCLcBGAsYHQ/s1600/AW4048160_16.gif")
             await ctx.send(embed=embed)
@@ -353,7 +354,7 @@ class Money(Cog_EX):
         await update_bank(member, amount, "bank")
         member = str(member)
         member = member.split("#")[0]
-        embed=discord.Embed(title=f"你給了{ member } { amount } 塊錢!!!", color=0xff0000)
+        embed=discord.Embed(title=f"你給了{ member } { amount } 塊錢!!!", color=0xff0000, timestamp = datetime.datetime.now())
         embed.set_author(name="⚠️ 銀行系統 ⚠️")
         embed.set_thumbnail(url="https://c.tenor.com/A_d18TlTmycAAAAC/counting-money-money.gif")
         await ctx.send(embed=embed)

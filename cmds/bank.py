@@ -56,7 +56,7 @@ class Bank(Cog_EX):
         em.add_field(name = "錢包餘額", value = f" `{wallet}` ")
         em.add_field(name = "銀行餘額", value = f" `{bank}` ")
 
-        await ctx.send(embed = em)
+        await ctx.send(ctx.author.mention,embed = em)
 
     @commands.command()
     async def lm(self, ctx, member : discord.Member ):
