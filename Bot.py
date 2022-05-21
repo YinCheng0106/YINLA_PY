@@ -22,7 +22,7 @@ async def on_ready():
 
 async def ch_pr():
     await bot.wait_until_ready()
-
+    bot.reload_extension('cmds.event')
     statuses = [f" {len(bot.guilds)} 個伺服器 ‖ YINLA" , "查指令 ‖ >command", "discord.py ‖ YINLA"]
 
     while not bot.is_closed():

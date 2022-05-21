@@ -226,7 +226,8 @@ class Money(Cog_EX):
             await update_bank(ctx.author, pos)
 
     @commands.command()
-    async def beg(self, ctx):
+    @commands.cooldown(1, 86400, commands.BucketType.user)
+    async def daily(self, ctx):
         pass
         
         await open_account(ctx.author)
@@ -236,7 +237,7 @@ class Money(Cog_EX):
 
         earnings = random.randrange(101)
 
-        embed=discord.Embed(title=f"有人給你 {earnings} 塊錢", color=0xff0000, timestamp = datetime.datetime.now())
+        embed=discord.Embed(title=f"✅ ‖ 已簽到\n 獲得 {earnings} 塊錢", color=0xff0000, timestamp = datetime.datetime.now())
         embed.set_author(name="⚠️ 銀行系統 ⚠️")
         embed.set_thumbnail(url="https://mavsocial-wpengine.netdna-ssl.com/wp-content/uploads/2017/10/Showering-in-money-GIF.gif")
         await ctx.send(embed=embed)

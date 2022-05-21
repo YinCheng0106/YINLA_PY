@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 from core.classes import Cog_EX
 from cmds.bank import Bank
+from cmds.money import Money
 import json
 import asyncio
 import datetime
@@ -61,7 +62,7 @@ class Event(Cog_EX):
             return
 
         if isinstance(error,commands.errors.MissingRequiredArgument):
-            embed=discord.Embed(title=" ❓‖ 指令不完整，請重新輸入\n輸入 `>command` 查詢現有指令", color=0xff0000, timestamp = datetime.datetime.now())
+            embed=discord.Embed(title=" ❓‖ 指令不完整或錯誤，請重新輸入\n輸入 `>command` 查詢現有指令", color=0xff0000, timestamp = datetime.datetime.now())
             embed.set_author(name="⚠️ 發生錯誤 ⚠️")
             await ctx.send(embed=embed)
         elif isinstance(error, commands.errors.CommandNotFound):
@@ -83,9 +84,22 @@ class Event(Cog_EX):
             await ctx.message.delete()
             await msg.delete()
         elif isinstance(error, commands.errors.MissingRequiredArgument):
-            embed=discord.Embed(title=" ❓‖ 指令不完整，請重新輸入\n輸入 `>command` 查詢現有指令", color=0xff0000, timestamp = datetime.datetime.now())
+            embed=discord.Embed(title=" ❓‖ 指令不完整或錯誤，請重新輸入\n輸入 `>command` 查詢現有指令", color=0xff0000, timestamp = datetime.datetime.now())
             embed.set_author(name="⚠️ 發生錯誤 ⚠️")
             await ctx.send(embed = embed)
+
+    @Money.daily.error
+    async def daily_error(self, ctx, error):
+        if isinstance(error, commands.errors.CommandOnCooldown):
+            cd = int(error.retry_after)
+            H = int(cd / 3600)
+            M = (int(cd / 60)- H*60)
+            S = int(cd % 60)
+            em = discord.Embed(title=f"✅ ‖ 已簽到\n冷卻時間 `{H}` H `{int(M)}` M `{int(S)}`S .", color=0xff0000, timestamp = datetime.datetime.now())
+            em.set_author(name="⚠️ 冷卻時間 ⚠️")
+            await ctx.send(embed=em)
+        else:
+            pass
 
     #新增反應獲得身分組
     @commands.Cog.listener()

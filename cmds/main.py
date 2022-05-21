@@ -31,7 +31,7 @@ class Main(Cog_EX):
         secondint = int(seconds)
 
         if secondint > 600:
-            embed=discord.Embed(title="我無法計時那麼久...", color=0xff0000, timestamp = datetime.datetime.now())
+            embed=discord.Embed(title="我無法計時那麼久...(最多 600 秒)", color=0xff0000, timestamp = datetime.datetime.now())
             embed.set_author(name="🛑 系統通知 🛑")
             msg = await ctx.send(embed = embed)
             await ctx.message.delete()
@@ -70,12 +70,13 @@ class Main(Cog_EX):
         today = datetime.datetime.now()
         dt = today.strftime(" ``%m`` / ``%d`` / ``%Y``"+" "+"``%H`` : ``%M`` : ``%S``")
         embed = discord.Embed(title= dt , color=0xff0000)
-        embed.set_author(name="🕰️時間🕰️")
+        embed.set_author(name="🕰️ 現在時間 🕰️")
     
         time = await ctx.send(embed = embed)
+        await ctx.message.delete()
         await asyncio.sleep(10)
         await time.delete()
-        await ctx.delete()
+        
             
 
     @commands.command()
