@@ -50,7 +50,7 @@ class Bank(Cog_EX):
         wallet = users[str(user.id)]["wallet"]
         bank = users[str(user.id)]["bank"]
 
-        em = discord.Embed(title = f"{ctx.author} 的錢包", color = discord.Color.red(),timestamp = datetime.datetime.now())
+        em = discord.Embed(title = f"👛 ‖ {ctx.author} 的錢包", color = discord.Color.red(),timestamp = datetime.datetime.now())
         em.set_thumbnail(url = "https://3wtrade.com/wp-content/uploads/2021/08/bit.gif")
         em.set_author(name = "🏦 銀行資訊 🏦")
         em.add_field(name = "錢包餘額", value = f" `{wallet}` ")
@@ -67,7 +67,7 @@ class Bank(Cog_EX):
         wallet = users[str(user.id)]["wallet"]
         bank = users[str(user.id)]["bank"]
 
-        em = discord.Embed(title = f"{member} 的錢包", color = discord.Color.red(),timestamp = datetime.datetime.now())
+        em = discord.Embed(title = f"👛 ‖ {member} 的錢包", color = discord.Color.red(),timestamp = datetime.datetime.now())
         em.set_thumbnail(url = "https://3wtrade.com/wp-content/uploads/2021/08/bit.gif")
         em.set_author(name = "🏦 銀行資訊 🏦")
         em.add_field(name = "錢包餘額", value = f" `{wallet}` ")

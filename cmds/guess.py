@@ -21,7 +21,6 @@ class Guess(Cog_EX):
     
         lowernumber = 1
         highernumber = 100
-        times = 10
     
         number = random.randint(lowernumber, highernumber)
         print(number)
@@ -42,39 +41,39 @@ class Guess(Cog_EX):
 
         
             except:
-                embed=discord.Embed(title="請輸入數字", color=0xff0000, timestamp = datetime.datetime.now())
+                embed=discord.Embed(title="🤔 ‖ 請輸入數字", color=0xff0000, timestamp = datetime.datetime.now())
                 embed.set_author(name="🕹️ 娛樂中心 🕹️")
                 embed.set_thumbnail(url="https://cdn.dribbble.com/users/648258/screenshots/9070602/media/20cef9101ef2a1f1617b6b020ec97157.gif")
                 await ctx.send(ctx.author.mention,embed=embed)
             
             if guess == number : 
-                embed=discord.Embed(title="答對了!!", color=0xff0000, timestamp = datetime.datetime.now())
+                embed=discord.Embed(title="✅ ‖ 答對了!!", color=0xff0000, timestamp = datetime.datetime.now())
                 embed.set_author(name="🕹️ 娛樂中心 🕹️")
-                embed.set_thumbnail(url="https://cdn.dribbble.com/users/648258/screenshots/9070602/media/20cef9101ef2a1f1617b6b020ec97157.gif")
+                embed.set_thumbnail(url="https://c.tenor.com/uCPMfBXrypUAAAAC/win-minions.gif")
                 await ctx.send(ctx.author.mention,embed=embed)
                 break
             
             if guess > 100 :
-                embed=discord.Embed(title="超過 `100` ，格式錯誤", color=0xff0000, timestamp = datetime.datetime.now())
+                embed=discord.Embed(title="❎ ‖ 超過 `100` ，格式錯誤", color=0xff0000, timestamp = datetime.datetime.now())
                 embed.set_author(name="🕹️ 娛樂中心 🕹️")
                 embed.set_thumbnail(url="https://cdn.dribbble.com/users/648258/screenshots/9070602/media/20cef9101ef2a1f1617b6b020ec97157.gif")
                 await ctx.send(embed=embed)
 
             if guess < 1 :
-                embed=discord.Embed(title="低於 `1` ，格式錯誤", color=0xff0000, timestamp = datetime.datetime.now())
+                embed=discord.Embed(title="❎ ‖ 低於 `1` ，格式錯誤", color=0xff0000, timestamp = datetime.datetime.now())
                 embed.set_author(name="🕹️ 娛樂中心 🕹️")
                 embed.set_thumbnail(url="https://cdn.dribbble.com/users/648258/screenshots/9070602/media/20cef9101ef2a1f1617b6b020ec97157.gif")
                 await ctx.send(embed=embed)
             
             if 0 < guess < number:
                 lowernumber = guess
-                em1=discord.Embed(title=f"比 `{lowernumber}` 大，比 `{highernumber}` 小", color=0xff0000, timestamp = datetime.datetime.now())
+                em1=discord.Embed(title=f"🤔 ‖ 比 `{lowernumber}` 大，比 `{highernumber}` 小", color=0xff0000, timestamp = datetime.datetime.now())
                 em1.set_author(name="🎮 終極密碼 🎮")
                 await ctx.send(embed=em1)
 
             if 101 > guess > number :
                 highernumber = guess
-                em2=discord.Embed(title=f"比 `{lowernumber}` 大，比 `{highernumber}` 小", color=0xff0000, timestamp = datetime.datetime.now())
+                em2=discord.Embed(title=f"🤔 ‖ 比 `{lowernumber}` 大，比 `{highernumber}` 小", color=0xff0000, timestamp = datetime.datetime.now())
                 em2.set_author(name="🎮 終極密碼 🎮")
                 await ctx.send(embed=em2)
         else:
@@ -88,7 +87,9 @@ class Guess(Cog_EX):
         def check(msg):
             return msg.author == ctx.author and msg.channel == ctx.message.channel
         await ctx.message.delete()
-        await ctx.send("請輸入不重複四位數(1-9)")
+        embed=discord.Embed(title="請輸入不重複四位數(1-9)", color=0xff0000, timestamp = datetime.datetime.now())
+        embed.set_author(name="🕹️ 娛樂中心 🕹️")
+        await ctx.send(embed=embed)
         A = [1,2,3,4,5,6,7,8,9]
         ans = random.sample(A,4)
         print(ans)
@@ -107,7 +108,9 @@ class Guess(Cog_EX):
                     if ans[i] == g_n[j] and i != j:
                             b += 1
             if a != 4:
-                await ctx.send(f"`{a}` A`{b}` B, 已猜`{times}`次")
+                embed=discord.Embed(title=f"`{a}` A`{b}` B, 已猜`{times}`次", color=0xff0000, timestamp = datetime.datetime.now())
+                embed.set_author(name="🕹️ 娛樂中心 🕹️")
+                await ctx.send(embed=embed)
             if a == 4:
                 em2=discord.Embed(title=f"恭喜答對了!!\n答案為`{guess}`，花了`{times}`次", color=0xff0000, timestamp = datetime.datetime.now())
                 em2.set_author(name="🎮 1A2B 🎮")
