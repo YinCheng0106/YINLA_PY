@@ -112,7 +112,7 @@ class Guess(Cog_EX):
                 embed.set_author(name="🕹️ 娛樂中心 🕹️")
                 await ctx.send(embed=embed)
             if a == 4:
-                em2=discord.Embed(title=f"恭喜答對了!!\n答案為`{guess}`，花了`{times}`次", color=0xff0000, timestamp = datetime.datetime.now())
+                em2=discord.Embed(title=f"恭喜答對了!!\n答案為`{ans}`，花了`{times}`次", color=0xff0000, timestamp = datetime.datetime.now())
                 em2.set_author(name="🎮 1A2B 🎮")
                 await ctx.send(ctx.author.mention,embed=em2)
                 break
@@ -123,8 +123,8 @@ class Guess(Cog_EX):
             a = 0
             b = 0
             times += 1
-            if times == 10:
-                embed=discord.Embed(title=f"GAME OVER\n答案為`{guess}`", color=0xff0000, timestamp = datetime.datetime.now())
+            if a!=4 and times == 2:
+                embed=discord.Embed(title=f"GAME OVER\n答案為`{ans}`", color=0xff0000, timestamp = datetime.datetime.now())
                 embed.set_author(name="🕹️ 娛樂中心 🕹️")
                 embed.set_thumbnail(url="https://i.gifer.com/QeMS.gif")
                 await ctx.send(embed=embed)

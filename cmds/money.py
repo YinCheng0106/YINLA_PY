@@ -355,7 +355,7 @@ class Money(Cog_EX):
         await update_bank(member, amount, "bank")
         member = str(member)
         member = member.split("#")[0]
-        embed=discord.Embed(title=f"你給了{ member } { amount } 塊錢!!!", color=0xff0000, timestamp = datetime.datetime.now())
+        embed=discord.Embed(title=f"你給了{ member } `{ amount }` 塊錢!!!", color=0xff0000, timestamp = datetime.datetime.now())
         embed.set_author(name="⚠️ 銀行系統 ⚠️")
         embed.set_thumbnail(url="https://c.tenor.com/A_d18TlTmycAAAAC/counting-money-money.gif")
         await ctx.send(embed=embed)

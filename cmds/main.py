@@ -134,6 +134,15 @@ class Main(Cog_EX):
         embed.add_field(name=">timer [秒數]", value="計時器(秒)", inline=True)
         embed.add_field(name=">nt", value="現在時間", inline=True)
         embed.add_field(name=">say [內容]", value="讓機器人說話", inline=True)
+        embed.add_field(name=">daily", value="簽到 (天)", inline=True)
+        embed.add_field(name=">money", value="查詢錢包", inline=True)
+        embed.add_field(name=">withdraw [金額]", value="提款", inline=True)
+        embed.add_field(name=">deposit [金額]", value="存款", inline=True)
+        embed.add_field(name=">send [@mention] [金額]", value="轉帳", inline=True)
+        embed.add_field(name=">abb", value="1A2B", inline=True)
+        embed.add_field(name=">slots [押金] [倍率]", value="拉霸機", inline=True)
+        embed.add_field(name=">guess", value="終極密碼", inline=True)
+
 
         embed.add_field(name=">clean [數量]", value="清除訊息", inline=True)
         embed.add_field(name=">ping", value="檢視機器人延遲", inline=False)
