@@ -4,9 +4,9 @@ from core.classes import Cog_EX
 import random
 import json
 
-with open('setting.json', mode='r', encoding='utf8') as jfile:
+with open('p/setting.json', mode='r', encoding='utf8') as jfile:
    jdata = json.load(jfile)
-
+   
 class React(Cog_EX):
 
     @commands.command()
