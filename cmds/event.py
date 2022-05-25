@@ -7,7 +7,7 @@ import json
 import asyncio
 import datetime
 
-with open('p/setting.json', mode='r', encoding='utf8') as jfile:
+with open('setting.json', mode='r', encoding='utf8') as jfile:
    jdata = json.load(jfile)
 class Event(Cog_EX):
 

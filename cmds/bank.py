@@ -6,7 +6,7 @@ import random
 import asyncio
 import datetime
 
-with open('p/setting.json', mode='r', encoding='utf8') as jfile:
+with open('setting.json', mode='r', encoding='utf8') as jfile:
    jdata = json.load(jfile)
 
 async def open_account(user):
