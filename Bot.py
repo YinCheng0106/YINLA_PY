@@ -7,7 +7,7 @@ import random
 import datetime
 
 with open('setting.json', mode='r', encoding='utf8') as jfile:
-   jdata = json.load(jfile)
+    jdata = json.load(jfile)
 
 intents = discord.Intents.all()
 

@@ -86,7 +86,7 @@ class Guess(Cog_EX):
         def check(msg):
             return msg.author == ctx.author and msg.channel == ctx.message.channel
         await ctx.message.delete()
-        embed=discord.Embed(title="請輸入不重複四位數(1-9)", color=0xff0000, timestamp = datetime.datetime.now())
+        embed=discord.Embed(title="請輸入不重複四位數(1-9)\n時間為 `300` s", color=0xff0000, timestamp = datetime.datetime.now())
         embed.set_author(name="🕹️ 娛樂中心 🕹️")
         await ctx.send(embed=embed)
         A = [1,2,3,4,5,6,7,8,9]
@@ -122,7 +122,7 @@ class Guess(Cog_EX):
             a = 0
             b = 0
             times += 1
-            if a!=4 and times == 2:
+            if a!=4 and times == 300:
                 embed=discord.Embed(title=f"GAME OVER\n答案為`{ans}`", color=0xff0000, timestamp = datetime.datetime.now())
                 embed.set_author(name="🕹️ 娛樂中心 🕹️")
                 embed.set_thumbnail(url="https://i.gifer.com/QeMS.gif")
