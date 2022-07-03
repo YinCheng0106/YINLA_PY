@@ -1,14 +1,17 @@
+from code import interact
+from random import random
 import discord
 from discord.ext import commands
 from core.classes import Cog_EX
 from cmds.bank import Bank
 from cmds.money import Money
+from cmds.main import Main
 import json
 import asyncio
 import datetime
 
 with open('setting.json', mode='r', encoding='utf8') as jfile:
-   jdata = json.load(jfile)
+    jdata = json.load(jfile)
 class Event(Cog_EX):
 
     @commands.Cog.listener()
@@ -27,6 +30,8 @@ class Event(Cog_EX):
 
     @commands.Cog.listener()
     async def on_message(self, msg):
+        if msg.author != self.bot.user:
+            return
         if msg.content == '安安' :
             await msg.channel.send('嗨')
         elif msg.content == 'test':
@@ -72,6 +77,8 @@ class Event(Cog_EX):
             embed=discord.Embed(title=" 😕 ‖ 請通報 **管理員** 修復",color=0xff0000, timestamp = datetime.datetime.now())
             embed.set_author(name="⚠️ 發生未知錯誤 ⚠️")
             await ctx.send(embed=embed)
+            print(error)
+
     
     # https://youtu.be/ojSb06_jm9Y?list=PLSCgthA1Anif1w6mKM3O6xlBGGypXtrtN&t=1748
     #個別錯誤處理
@@ -97,6 +104,34 @@ class Event(Cog_EX):
             em = discord.Embed(title=f"✅ ‖ 已簽到\n冷卻時間 `{H}` H `{int(M)}` M `{int(S)}`S .", color=0xff0000, timestamp = datetime.datetime.now())
             em.set_author(name="⚠️ 冷卻時間 ⚠️")
             await ctx.send(embed=em)
+        else:
+            pass
+
+    @Main.avatar.error
+    async def avatar_error(self, ctx, error):
+        if isinstance(error, commands.errors.MemberNotFound):
+            #a = "🤔 | 我不認識這個人吧..."
+            #b = "🤔 | 他是誰?"
+            #title = random.choice([a,b])
+            embed = discord.Embed(
+                title = "🤔 | 我不認識這個人吧...",
+                color = 0xff0000
+            )
+            await ctx.reply(embed = embed)
+        else:
+            pass
+
+    @Main.profile.error
+    async def profile_error(self, ctx, error):
+        if isinstance(error, commands.errors.MemberNotFound):
+            #a = "🤔 | 我不認識這個人吧..."
+            #b = "🤔 | 他是誰?"
+            #title = random.choice([a,b])
+            embed = discord.Embed(
+                title = "🤔 | 我不認識這個人吧...",
+                color = 0xff0000
+            )
+            await ctx.reply(embed = embed)
         else:
             pass
 

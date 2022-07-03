@@ -6,7 +6,7 @@ import random
 import datetime
 
 with open('setting.json', mode='r', encoding='utf8') as jfile:
-   jdata = json.load(jfile)
+    jdata = json.load(jfile)
 
 class Guess(Cog_EX):
     @commands.command()

@@ -6,6 +6,7 @@ import asyncio
 import random
 import datetime
 
+
 with open('setting.json', mode='r', encoding='utf8') as jfile:
     jdata = json.load(jfile)
 
@@ -23,7 +24,7 @@ async def on_ready():
 async def ch_pr():
     await bot.wait_until_ready()
     bot.reload_extension('cmds.event')
-    statuses = [f" {len(bot.guilds)} 個伺服器 ‖ YINLA" , "查指令 ‖ >command", "discord.py ‖ YINLA"]
+    statuses = [f" {len(bot.guilds)} 個伺服器 ‖ YINLA", f"{len(bot.users)} 位用戶 {len([channel for guild in bot.guilds for channel in guild.channels])} 個頻道 ‖ YINLA", "查指令 ‖ >command", "discord.py ‖ YINLA"]
 
     while not bot.is_closed():
 
@@ -55,7 +56,6 @@ async def reload(ctx, extension):
     embed=discord.Embed(title=f'✅ ‖ 重載 **{extension}** 成功!',color=0x00ff62, timestamp = datetime.datetime.now())
     embed.set_author(name="🛑 系統通知 🛑")
     await ctx.send(embed=embed)
-
 
 for filename in os.listdir('./cmds'):
     if filename.endswith('.py'):

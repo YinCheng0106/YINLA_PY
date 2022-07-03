@@ -7,7 +7,7 @@ import asyncio
 import datetime
 
 with open('setting.json', mode='r', encoding='utf8') as jfile:
-   jdata = json.load(jfile)
+    jdata = json.load(jfile)
 
 async def open_account(user):
     pass
@@ -67,7 +67,7 @@ class Bank(Cog_EX):
         bank = users[str(user.id)]["bank"]
 
         em = discord.Embed(title = f"👛 ‖ {member} 的錢包", color = discord.Color.red(),timestamp = datetime.datetime.now())
-        em.set_thumbnail(url = "https://3wtrade.com/wp-content/uploads/2021/08/bit.gif")
+        em.set_thumbnail(url=f"{user.avatar}")
         em.set_author(name = "🏦 銀行資訊 🏦")
         em.add_field(name = "錢包餘額", value = f" `{wallet}` ")
         em.add_field(name = "銀行餘額", value = f" `{bank}` ")
