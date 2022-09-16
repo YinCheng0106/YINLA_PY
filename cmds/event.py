@@ -1,5 +1,3 @@
-from code import interact
-from random import random
 import discord
 from discord.ext import commands
 from core.classes import Cog_EX

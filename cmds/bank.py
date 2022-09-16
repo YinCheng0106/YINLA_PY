@@ -73,7 +73,6 @@ class Bank(Cog_EX):
         em.add_field(name = "銀行餘額", value = f" `{bank}` ")
 
         await ctx.send(embed = em)
-    #不知為何抓不到 user.avatar_url
 
 def setup(bot):
     bot.add_cog(Bank(bot))
