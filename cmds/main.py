@@ -213,6 +213,10 @@ class Main(Cog_EX):
         embed.add_field(name=">abb", value="1A2B", inline=True)
         embed.add_field(name=">slots [押金] [倍率]", value="拉霸機", inline=True)
         embed.add_field(name=">guess", value="終極密碼", inline=True)
+        embed.add_field(name=">radar", value="雷達回波圖", inline=False)
+        embed.add_field(name=">eq", value="最新 有編號 有感地震", inline=True)
+        embed.add_field(name=">eqs", value="最新 小區域 有感地震", inline=False)
+
 
         embed.add_field(name=">clean [數量]", value="清除訊息", inline=False)
         embed.add_field(name=">avatar", value="用戶頭貼抓取功能", inline=True)
