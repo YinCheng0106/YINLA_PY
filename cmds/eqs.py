@@ -15,19 +15,20 @@ class EQS(Cog_EX):
         cwbAPI_1 = 'https://opendata.cwb.gov.tw/api/v1/rest/datastore/E-A0016-001?Authorization=CWB-85B18E4D-CE89-4D11-8018-F80812EA6E8F&format=JSON'
         b = requests.get(cwbAPI_1).json()
 
-        time = str(b['records']['earthquake'][0]
-                    ['earthquakeInfo']['originTime'])
-        location = str(b['records']['earthquake'][0]['earthquakeInfo']['epiCenter']['location']) + " " + "東經：" + str(b['records']['earthquake'][0]['earthquakeInfo']
-                                                                                                                        ['epiCenter']['epiCenterLon']['value']) + " " + "北緯：" + str(b['records']['earthquake'][0]['earthquakeInfo']['epiCenter']['epiCenterLat']['value'])
-        depth = str(b['records']['earthquake'][0]
-                    ['earthquakeInfo']['depth']['value'])
-        magnitude = str(b['records']['earthquake'][0]
-                        ['earthquakeInfo']['magnitude']['magnitudeValue'])
-        message = str(b['records']['earthquake'][0]['reportContent'])
-        img = str(b['records']['earthquake'][0]['reportImageURI'])
+        time = str(b['records']['Earthquake'][0]
+                    ['EarthquakeInfo']['OriginTime'])
+        location = str(b['records']['Earthquake'][0]['EarthquakeInfo']['Epicenter']['Location']) + " " + "東經：" + str(b['records']['Earthquake'][0]['EarthquakeInfo']
+                                                                                                       ['Epicenter']['EpicenterLongitude']) + " " + "北緯：" + str(b['records']['Earthquake'][0]['EarthquakeInfo']['Epicenter']['EpicenterLatitude'])
 
-        m = int(b['records']['earthquake'][0]['earthquakeInfo']
-                ['magnitude']['magnitudeValue'])
+        depth = str(b['records']['Earthquake'][0]
+                    ['EarthquakeInfo']['FocalDepth'])
+        magnitude = str(b['records']['Earthquake'][0]['EarthquakeInfo']
+                        ['EarthquakeMagnitude']['MagnitudeValue'])
+        message = str(b['records']['Earthquake'][0]['ReportContent'])
+        img = str(b['records']['Earthquake'][0]['ReportImageURI'])
+
+        m = int(b['records']['Earthquake'][0]['EarthquakeInfo']
+                ['EarthquakeMagnitude']['MagnitudeValue'])
 
         if m == 0:
             msg = "⚪ " + magnitude + " `(極微)`"
@@ -53,7 +54,7 @@ class EQS(Cog_EX):
             msg = "❓`(未知)`"
 
         embed = discord.Embed(title="<a:ezgif:1000944717653090365> | 地震報告",
-                                description=message, color=0xff0000, timestamp=datetime.datetime.now())
+                              description=message, color=0xff0000, timestamp=datetime.datetime.now())
         embed.add_field(name="編號", value="`小區域有感地震`")
         embed.add_field(name="發生時間", value=f"`{time}`")
         embed.add_field(name="震央位置", value=f"`{location}`")

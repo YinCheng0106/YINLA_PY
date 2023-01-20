@@ -11,18 +11,18 @@ class EQ(Cog_EX):
     
     @commands.command()
     async def eq(self, ctx):
-            cwbAPI_1 = 'https://opendata.cwb.gov.tw/api/v1/rest/datastore/E-A0015-001?Authorization=CWB-85B18E4D-CE89-4D11-8018-F80812EA6E8F&format=JSON&areaName='
+            cwbAPI_1 = 'https://opendata.cwb.gov.tw/api/v1/rest/datastore/E-A0015-001?Authorization=CWB-85B18E4D-CE89-4D11-8018-F80812EA6E8F&AreaName='
             b = requests.get(cwbAPI_1).json()
 
-            time = str(b['records']['earthquake'][0]['earthquakeInfo']['originTime'])
-            location = str(b['records']['earthquake'][0]['earthquakeInfo']['epiCenter']['location']) + " " + "東經：" + str(b['records']['earthquake'][0]['earthquakeInfo']['epiCenter']['epiCenterLon']['value']) + " " + "北緯：" + str(b['records']['earthquake'][0]['earthquakeInfo']['epiCenter']['epiCenterLat']['value'])
-            number = str(b['records']['earthquake'][0]['earthquakeNo'])
-            depth = str(b['records']['earthquake'][0]['earthquakeInfo']['depth']['value'])
-            magnitude = str(b['records']['earthquake'][0]['earthquakeInfo']['magnitude']['magnitudeValue'])
-            message = str(b['records']['earthquake'][0]['reportContent'])
-            img = str(b['records']['earthquake'][0]['reportImageURI'])
+            time = str(b['records']['Earthquake'][0]['EarthquakeInfo']['OriginTime'])
+            location = str(b['records']['Earthquake'][0]['EarthquakeInfo']['Epicenter']['Location']) + " " + "東經：" + str(b['records']['Earthquake'][0]['EarthquakeInfo']['Epicenter']['EpicenterLongitude']) + " " + "北緯：" + str(b['records']['Earthquake'][0]['EarthquakeInfo']['Epicenter']['EpicenterLatitude'])
+            number = str(b['records']['Earthquake'][0]['EarthquakeNo'])
+            depth = str(b['records']['Earthquake'][0]['EarthquakeInfo']['FocalDepth'])
+            magnitude = str(b['records']['Earthquake'][0]['EarthquakeInfo']['EarthquakeMagnitude']['MagnitudeValue'])
+            message = str(b['records']['Earthquake'][0]['ReportContent'])
+            img = str(b['records']['Earthquake'][0]['ReportImageURI'])
 
-            m = int(b['records']['earthquake'][0]['earthquakeInfo']['magnitude']['magnitudeValue'])
+            m = int(b['records']['Earthquake'][0]['EarthquakeInfo']['EarthquakeMagnitude']['MagnitudeValue'])
 
             if m == 0:
                 msg = "⚪ " + magnitude + " `(極微)`"
